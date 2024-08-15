@@ -11,8 +11,9 @@ class Roadmap(BaseModel, Base):
     """Roadmap Class"""
     __tablename__ = "roadmaps"
     title = Column(String(256), nullable=False)
-    short_description = Column(String(4096), nullable=False)
-    long_description = Column(String(4096), nullable=True)
+    description = Column(String(4096), nullable=False)
+    slug = Column(String(256), nullable=False)
     course_count = Column(Integer, nullable=True)
+    image = Column(String(4096), nullable=True)
     courses = relationship("Course", cascade="all,delete,delete-orphan", backref="roadmap")
     progresses = relationship("Progress", cascade="all,delete,delete-orphan", backref="roadmap")
