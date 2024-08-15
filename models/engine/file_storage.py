@@ -8,6 +8,8 @@ from models.message import Message
 from models.roadmap import Roadmap
 from models.course import Course
 from models.vendor import Vendor
+from models.chapter import Chapter
+from models.progress import Progress
 
 
 class FileStorage():

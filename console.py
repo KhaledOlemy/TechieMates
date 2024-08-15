@@ -4,22 +4,26 @@ import cmd
 from models import storage
 from shlex import split
 from models.base_model import BaseModel
+from models.roadmap import Roadmap
 from models.user import User
 from models.message import Message
-from models.roadmap import Roadmap
 from models.course import Course
+from models.chapter import Chapter
 from models.vendor import Vendor
+from models.progress import Progress
 
 
 class TechieMateCommand(cmd.Cmd):
     """ Contains the functionality for the TechieMate console"""
     prompt = "(TechieMate) "
     allowed_classes = ["BaseModel",
+                       "Roadmap",
                        "User",
                        "Message",
-                       "Roadmap",
                        "Course",
-                       "Vendor"]
+                       "Chapter",
+                       "Vendor",
+                       "Progress"]
     allowed_methods = ["all", "count", "show", "destroy", "update"]
     objects = storage.all()
 
@@ -107,8 +111,14 @@ class TechieMateCommand(cmd.Cmd):
         elif "{}.{}".format(commands[0], commands[1]) not in self.objects:
             self.instance_not_found()
         else:
-            del self.objects["{}.{}".format(commands[0], commands[1])]
-            storage.save()
+            import os
+            if os.getenv("TM_TYPE_STORAGE") == "db":
+                ins = storage.get(commands[0], commands[1])
+                storage.delete(ins)
+                storage.save()
+            else:
+                del self.objects["{}.{}".format(commands[0], commands[1])]
+                storage.save()
 
     def do_all(self, arg):
         """

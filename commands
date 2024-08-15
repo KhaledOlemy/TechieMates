@@ -1,0 +1,73 @@
+================================= set up databases =================================
+dev:
+cat setup_mysql_dev.sql | mysql -hlocalhost -uroot -p
+echo "SHOW DATABASES;" | mysql -utm_dev -p | grep tm_dev_db
+echo "SHOW GRANTS FOR 'tm_dev'@'localhost';" | mysql -uroot -p
+
+test:
+cat setup_mysql_test.sql | mysql -hlocalhost -uroot -p
+echo "SHOW DATABASES;" | mysql -utm_test -p | grep tm_test_db
+echo "SHOW GRANTS FOR 'tm_test'@'localhost';" | mysql -uroot -p
+================================= console commands =================================
+DB:
+
+dev:  TM_ENV=dev TM_MYSQL_USER=tm_dev TM_MYSQL_PWD=tm_dev_pwd TM_MYSQL_HOST=localhost TM_MYSQL_DB=tm_dev_db TM_TYPE_STORAGE=db ./console.py
+test: TM_ENV=test TM_MYSQL_USER=tm_test TM_MYSQL_PWD=tm_test_pwd TM_MYSQL_HOST=localhost TM_MYSQL_DB=tm_test_db TM_TYPE_STORAGE=db ./console.py
+
+FS:
+
+dev:  ./console
+test: ./console
+============================== environment variables ==============================
+TM_TYPE_STORAGE         db
+
+TM_ENV                  dev             test
+TM_MYSQL_USER           tm_dev          tm_test
+TM_MYSQL_PWD            tm_dev_pwd      tm_test_pwd
+TM_MYSQL_HOST           localhost       localhost
+TM_MYSQL_DB             tm_dev_db       tm_test_db
+==================================== passwords ====================================
+mysql:
+    dev:
+            'tm_dev'@'localhost'        tm_dev_pwd
+    test:
+            'tm_test'@'localhost'       tm_test_pwd
+===================================================================================
+# Valid Roadmap
+echo 'create Roadmap id=1 title="track 1" short_description="track 1 desc" long_description="track 1 descritpion"' | TM_ENV=dev TM_MYSQL_USER=tm_dev TM_MYSQL_PWD=tm_dev_pwd TM_MYSQL_HOST=localhost TM_MYSQL_DB=tm_dev_db TM_TYPE_STORAGE=db ./console.py
+echo 'create Roadmap id=2 title="track 2" short_description="track 2 desc" long_description="track 2 descritpion"' | TM_ENV=dev TM_MYSQL_USER=tm_dev TM_MYSQL_PWD=tm_dev_pwd TM_MYSQL_HOST=localhost TM_MYSQL_DB=tm_dev_db TM_TYPE_STORAGE=db ./console.py
+echo 'create Roadmap id=3 title="track 3" short_description="track 3 desc" long_description="track 3 descritpion"' | TM_ENV=dev TM_MYSQL_USER=tm_dev TM_MYSQL_PWD=tm_dev_pwd TM_MYSQL_HOST=localhost TM_MYSQL_DB=tm_dev_db TM_TYPE_STORAGE=db ./console.py
+echo 'create Roadmap id=4 title="track 4" short_description="track 4 desc" long_description="track 4 descritpion"' | TM_ENV=dev TM_MYSQL_USER=tm_dev TM_MYSQL_PWD=tm_dev_pwd TM_MYSQL_HOST=localhost TM_MYSQL_DB=tm_dev_db TM_TYPE_STORAGE=db ./console.py
+# Invalid Roadmap
+echo 'create Roadmap id=1 title="track 1" short_description="track 1 desc" long_description="track 1 descritpion"' | TM_ENV=dev TM_MYSQL_USER=tm_dev TM_MYSQL_PWD=tm_dev_pwd TM_MYSQL_HOST=localhost TM_MYSQL_DB=tm_dev_db TM_TYPE_STORAGE=db ./console.py
+echo 'create Roadmap id=5 title="track 1"' | TM_ENV=dev TM_MYSQL_USER=tm_dev TM_MYSQL_PWD=tm_dev_pwd TM_MYSQL_HOST=localhost TM_MYSQL_DB=tm_dev_db TM_TYPE_STORAGE=db ./console.py
+echo 'create Roadmap id=6 short_description="track 1 desc" long_description="track 1 descritpion"' | TM_ENV=dev TM_MYSQL_USER=tm_dev TM_MYSQL_PWD=tm_dev_pwd TM_MYSQL_HOST=localhost TM_MYSQL_DB=tm_dev_db TM_TYPE_STORAGE=db ./console.py
+# Valid User
+echo 'create User id=1 first_name="Khaled" last_name="Olemy" password="pass" email="khaled@gmail.com" phone="010" roadmap_id="1"' | TM_ENV=dev TM_MYSQL_USER=tm_dev TM_MYSQL_PWD=tm_dev_pwd TM_MYSQL_HOST=localhost TM_MYSQL_DB=tm_dev_db TM_TYPE_STORAGE=db ./console.py
+echo 'create User id=2 first_name="Abdo" last_name="Bedier" password="pass" email="bedier@gmail.com" phone="011" roadmap_id="1"' | TM_ENV=dev TM_MYSQL_USER=tm_dev TM_MYSQL_PWD=tm_dev_pwd TM_MYSQL_HOST=localhost TM_MYSQL_DB=tm_dev_db TM_TYPE_STORAGE=db ./console.py
+echo 'create User id=3 first_name="Y" last_name="Y" password="pass" email="y@gmail.com" phone="012" roadmap_id="1" partner_id="2"' | TM_ENV=dev TM_MYSQL_USER=tm_dev TM_MYSQL_PWD=tm_dev_pwd TM_MYSQL_HOST=localhost TM_MYSQL_DB=tm_dev_db TM_TYPE_STORAGE=db ./console.py
+
+#Valid Course
+echo 'create Course id=1 title="c1 of r1" short_description="c1" roadmap_id="1", order_in_roadmap="1"' | TM_ENV=dev TM_MYSQL_USER=tm_dev TM_MYSQL_PWD=tm_dev_pwd TM_MYSQL_HOST=localhost TM_MYSQL_DB=tm_dev_db TM_TYPE_STORAGE=db ./console.py
+echo 'create Course id=2 title="c2 of r1" short_description="c2" roadmap_id="1", order_in_roadmap="1"' | TM_ENV=dev TM_MYSQL_USER=tm_dev TM_MYSQL_PWD=tm_dev_pwd TM_MYSQL_HOST=localhost TM_MYSQL_DB=tm_dev_db TM_TYPE_STORAGE=db ./console.py
+
+
+
+
+echo 'create Roadmap id=1 title="track 1" short_description="track 1 desc" long_description="track 1 descritpion"' | TM_ENV=dev TM_MYSQL_USER=tm_dev TM_MYSQL_PWD=tm_dev_pwd TM_MYSQL_HOST=localhost TM_MYSQL_DB=tm_dev_db TM_TYPE_STORAGE=db ./console.py
+
+echo 'create Roadmap id=2 title="track 2" short_description="track 2 desc" long_description="track 2 descritpion"' | TM_ENV=dev TM_MYSQL_USER=tm_dev TM_MYSQL_PWD=tm_dev_pwd TM_MYSQL_HOST=localhost TM_MYSQL_DB=tm_dev_db TM_TYPE_STORAGE=db ./console.py
+
+echo 'create Course id=1 title="c1 of r1" short_description="c1" roadmap_id="1", order_in_roadmap="1"' | TM_ENV=dev TM_MYSQL_USER=tm_dev TM_MYSQL_PWD=tm_dev_pwd TM_MYSQL_HOST=localhost TM_MYSQL_DB=tm_dev_db TM_TYPE_STORAGE=db ./console.py
+
+echo 'create Course id=2 title="c1 of r1" short_description="c1" roadmap_id="1", order_in_roadmap="2"' | TM_ENV=dev TM_MYSQL_USER=tm_dev TM_MYSQL_PWD=tm_dev_pwd TM_MYSQL_HOST=localhost TM_MYSQL_DB=tm_dev_db TM_TYPE_STORAGE=db ./console.py
+
+echo 'create Course id=3 title="c1 of r1" short_description="c1" roadmap_id="1", order_in_roadmap="3"' | TM_ENV=dev TM_MYSQL_USER=tm_dev TM_MYSQL_PWD=tm_dev_pwd TM_MYSQL_HOST=localhost TM_MYSQL_DB=tm_dev_db TM_TYPE_STORAGE=db ./console.py
+
+echo 'create Course id=4 title="c1 of r1" short_description="c1" roadmap_id="2", order_in_roadmap="1"' | TM_ENV=dev TM_MYSQL_USER=tm_dev TM_MYSQL_PWD=tm_dev_pwd TM_MYSQL_HOST=localhost TM_MYSQL_DB=tm_dev_db TM_TYPE_STORAGE=db ./console.py
+
+echo 'create Course id=5 title="c1 of r1" short_description="c1" roadmap_id="2", order_in_roadmap="2"' | TM_ENV=dev TM_MYSQL_USER=tm_dev TM_MYSQL_PWD=tm_dev_pwd TM_MYSQL_HOST=localhost TM_MYSQL_DB=tm_dev_db TM_TYPE_STORAGE=db ./console.py
+
+echo 'create Course id=6 title="c1 of r1" short_description="c1" roadmap_id="2", order_in_roadmap="3"' | TM_ENV=dev TM_MYSQL_USER=tm_dev TM_MYSQL_PWD=tm_dev_pwd TM_MYSQL_HOST=localhost TM_MYSQL_DB=tm_dev_db TM_TYPE_STORAGE=db ./console.py
+
+echo 'destroy Roadmap 1' | TM_ENV=dev TM_MYSQL_USER=tm_dev TM_MYSQL_PWD=tm_dev_pwd TM_MYSQL_HOST=localhost TM_MYSQL_DB=tm_dev_db TM_TYPE_STORAGE=db ./console.py
