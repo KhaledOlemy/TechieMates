@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+
+{% block title %}{{ roadmap.title }}{% endblock %}
+
+{% block content %}
+<section id="single-roadmap">
+    <div class="roadmap-info">
+        <div class="roadmap-description-container">
+            <h1 class="roadmap-title">{{ roadmap.title }}</h1>
+            <p class="roadmap-description">{{ roadmap.description }}</p>
+        </div>
+        <!-- <div class="roadmap-image">
+            <img src="../static/images/landing_5.png" alt="Roadmap Image">
+        </div> -->
+    </div>
+    
+    <div class="courses">
+        <h2>Courses</h2>
+        <div class="course-container">
+            {% for course in courses %}
+            <div class="course-item" id="{{ course.id }}">
+                <div class="course-title">{{ course.title }}</div>
+                <div class="course-details" style="display: none;">
+                    <div class="course-description">{{ course.description }}</div>
+                    <a href="{{ course.link }}" class="course-link">View Course</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    
+    <div class="course-details-box" style="display: none;">
+        <div class="course-details-content">
+            <div class="course-details-description"></div>
+            <a href="#" class="course-details-link">View Course</a>
+        </div>
+    </div>
+    
+    <div class="other-roadmaps">
+        <h2>Other Roadmaps</h2>
+        <ul class="other-roadmap-list">
+            {% for other_roadmap in other_roadmaps %}
+            <li class="other-roadmap-item">
+                <a href="{{ other_roadmap.link }}">{{ other_roadmap.title }}</a>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</section>
+
+{% if session.get('logged_in') %}
+    {% if not session.get('user', {}).get('roadmap_id') %}
+        <a href="/enroll" class="button enroll-button">Enroll now</a>
+    {% elif session.get('user', {}).get('roadmap_id') == roadmap.id and not session.get('user', {}).get('partner_id') %}
+        <a href="/partners" class="button partners-button">See available partners</a>
+    {% endif %}
+{% endif %}
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const courseItems = document.querySelectorAll(".course-item");
+    const courseDetailsBox = document.querySelector(".course-details-box");
+    const courseDetailsDescription = courseDetailsBox.querySelector(".course-details-description");
+    const courseDetailsLink = courseDetailsBox.querySelector(".course-details-link");
+
+    courseItems.forEach(function(item) {
+        item.addEventListener("click", function() {
+            const courseId = this.id;
+            const currentDetails = this.querySelector(".course-details");
+
+            // Show course details box
+            courseDetailsBox.style.display = "block";
+
+            // Update course details box with current course data
+            courseDetailsDescription.textContent = currentDetails.querySelector(".course-description").textContent;
+            courseDetailsLink.href = currentDetails.querySelector(".course-link").href;
+
+            // Close details of other courses
+            courseItems.forEach(function(otherItem) {
+                if (otherItem.id !== courseId) {
+                    otherItem.querySelector(".course-details").style.display = "none";
+                }
+            });
+        });
+    });
+});
+</script>
+{% endblock %}

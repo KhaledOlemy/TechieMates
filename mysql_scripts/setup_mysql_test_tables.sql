@@ -1,4 +1,3 @@
-
 USE tm_test_db;
 -- Generate required tables
 -- **************************************

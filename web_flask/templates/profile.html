@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block title %}{{ data.user_name }}'s Profile{% endblock %}
+
+{% block content %}
+<section id="profile-page">
+    <div class="profile-headers">
+        <div class="profile-photos">
+            <!-- User's photo goes here -->
+            <img src="../static/images/pngegg.png" alt="Profile Photo">
+        </div>
+        <div class="profile-info">
+            <div class="user-info">
+                <h1>{{ data.user_name }}</h1>
+                {% if message_link %}
+                <a href="{{ message_link}}" class="message-button"><i class="far fa-envelope"></i> Message User</a>
+                {% endif %}
+            </div>
+            {% if data.current_roadmap %}
+            <div class="section">
+                <h2><i class="fas fa-map-marker-al"></i> Current Roadmaps</h2>
+                <p>{{data.current_roadmap}}</p>
+            </div>
+            {%endif%}
+
+            {% if data.current_course %}
+            <div class="sections">
+                <h2><i class="fas fa-book"></i> Current Course</h2>
+                <p>{{ data.current_course }}</p>
+            </div>
+            {% endif %}
+
+            {% if data.completed_courses %}
+            <div class="sections">
+                <h2><i class="fas fa-check-circle"></i> Completed Courses</h2>
+                <ul>
+                    {% for course in data.completed_courses %}
+                    <li>{{ course }} <i class="far fa-check-circle"></i></li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
+
+            {% if data.partner_name %}
+            <div class="section">
+                <h2><i class="fas fa-user-friends"></i> Partners Name</h2>
+                <p>{{ data.partner_name }}</p>
+            </div>
+            {%endif%}
+        </div>
+    </div>
+</section>
+{% endblock %}

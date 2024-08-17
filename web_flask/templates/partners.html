@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %}{{ roadmap_title }}{% endblock %}
+
+{% block content %}
+<section id="partners-page">
+    <h1>{{ roadmap_title }}</h1>
+    
+    <div class="partners-container">
+        {% for partner in partners %}
+        <div class="partner-item">
+            <div class="partner-info">
+                <a href="{{ partner.link }}" class="partner-name">{{ partner.fullname }}</a>
+                <button class="partner-button" onclick="window.location.href='{{ partner.button }}'">Choose as a Partner</button>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}

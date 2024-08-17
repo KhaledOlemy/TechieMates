@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+<section id="single-roadmap">
+    <div class="roadmap-info">
+        <div class="roadmap-description-container">
+            <div class="roadmap-header">
+                <h1 class="roadmap-title">{{roadmaps.title}}</h1>
+                <div class="button-container">
+                    {% if session.get('logged_in') %}
+                        {% if not session.get('user', {}).get('roadmap_id') %}
+                            <a href="{{url_for('enroll_in_roadmap', roadmaps_id=roadmap.id) }}" class="button enroll_in-button">Enroll now</a>
+                        {% elif session.get('user', {}).get('roadmap_id') == roadmap.id and not session.get('user', {}).get('partner_id') %}
+                            <a href="{{url_for('get_roadmap_partners', roadmaps_id=roadmap.id)}}" class="button partners-button">See available partners</a>
+                        {% endif %}
+                    {% endif %}
+                </div>
+            </div>
+            <p class="roadmap-description">{{ roadmap.description }}</p>
+        </div>
+    </div>
+    
+    <div class="courses">
+        <h2>Courses</h2>
+        <div class="course-container">
+            {% for course in courses %}
+            <div class="course-items" id="{{course.id}}">
+                <div class="course-title">{{ course.title }}</div>
+                <div class="course-details" style="display: none;">
+                    <div class="course-description">{{ course.description }}</div>
+                    <a href="{{course.link}}" class="course-link">View Course</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    
+    <div class="course-details-box" style="display: none;">
+        <div class="course-details-content">
+            <div class="course-details-descriptions"></div>
+            <a href="#" class="course-details-links">View Course</a>
+        </div>
+    </div>
+    
+    <div class="other-roadmaps">
+        <h2>Other Roadmaps</h2>
+        <ul class="other-roadmap-list">
+            {% for other_roadmap in other_roadmaps %}
+            <li class="other-roadmap-item">
+                <a href="{{ other_roadmap.link }}">{{other_roadmap.title}}</a>
+            </li>
+        </ul>
+    </div>
+</section>
+{% endblock %}

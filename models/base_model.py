@@ -18,11 +18,10 @@ class BaseModel():
     created_at = Column(DateTime, nullable=False, default=(datetime.utcnow()))
     updated_at = Column(DateTime, nullable=False, default=(datetime.utcnow()))
     """
-    id = mapped_column(String(60), unique=True, nullable=False, primary_key=True, sort_order=-3)
+    id = mapped_column(String(100), unique=True, nullable=False, primary_key=True, sort_order=-3)
     created_at = mapped_column(DateTime, nullable=False, default=(datetime.utcnow()), sort_order=-2)
     updated_at = mapped_column(DateTime, nullable=False, default=(datetime.utcnow()), sort_order=-1)
     def __init__(self, *args, **kwargs):
-        self.id = str(uuid4())
         self.created_at = datetime.now()
         self.updated_at = datetime.now()
         if kwargs:
@@ -38,13 +37,10 @@ class BaseModel():
             else:
                 kwargs['created_at'] = datetime.now()
             self.created_at = kwargs['created_at']
-            if 'id' not in kwargs:
-                self.id = str(uuid4())
             if '__class__' in kwargs:
-                del kwargs['__class__']
+                del kwargs['___class___']
             self.__dict__.update(kwargs)
         else:
-            self.id = str(uuid4())
             self.created_at = datetime.now()
             self.updated_at = datetime.now()
 

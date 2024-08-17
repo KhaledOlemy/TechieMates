@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block title %}{{ course.title }}{% endblock %}
+
+{% block content %}
+<section id="course-page">
+    <div class="course-info">
+        <h1>{{ course.title }}</h1>
+        <p>{{ course.description }}</p>
+    </div>
+    
+    <div class="chapters">
+        <h2>Chapters</h2>
+        <ul>
+            {% for chapter in chapters %}
+            <li>{{ chapter.title }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    
+    <div class="vendors">
+        <h2>Vendors</h2>
+        <ul>
+            {% for vendor in vendors %}
+            <li>
+                <div class="vendor-item">
+                    <span class="vendor-name">{{ vendor.name }}</span>
+                    <div class="vendor-info">
+                        {% if vendor.cost %}
+                        <span class="vendor-cost">$ {{ vendor.cost }}.00</span>
+                        {% else %}
+                        <span class="vendor-cost">Check pricing</span>
+                        {% endif %}
+                        <a href="{{ vendor.link }}" target="_blank" class="button">Visit {{vendor.name}}'s page</a>
+                    </div>
+                    
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</section>
+{% endblock %}

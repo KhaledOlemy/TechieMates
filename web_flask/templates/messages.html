@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}Messages{% endblock %}
+
+{% block content %}
+<section id="messages-page">
+    <h1>Messages</h1>
+    <div id="messages-container">
+        {% if last_messages %}
+            {% for message in last_messages %}
+                <div class="message-container">
+                    <img src="../static/images/pngegg.png" class="messages-photo" alt="User Photo">
+                    <div class="message-box {% if message.sender_same_user %}sent{% else %}received{% endif %}">
+                        <div class="messages-info">
+                            <a href="{{ message.link }}" class="messages-sender">{{message.other_user_name }}</a>
+                            <span class="messages-time">{{ message.time }}</span>
+                        </div>
+                        <p>{{ message.other_user_name }}: {{ message.last_message_sent }}</p>
+                    </div>
+            {% endfor %}
+        {% else %}
+            <p>You have no messages!</p>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}

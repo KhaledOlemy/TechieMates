@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+
+{% block title %}Progress{% endblock %}
+
+{% block content %}
+<section id="progress-page">
+    <h1>Progress</h1>
+    
+    <!-- Course List -->
+    <div class="course-list">
+        {% for course in completed_courses %}
+        <div class="pcourse-item completed">
+            {{ course.title }}
+        </div>
+        {% endfor %}
+        
+        <div class="pcourse-item active">
+            {{ active_course.title }}
+        </div>
+        
+        {% for course in upcoming_courses %}
+        <div class="pcourse-item upcoming">
+            {{ course.title }}
+        </div>
+        {% endfor %}
+    </div>
+    
+    <!-- Chapter List -->
+    <div class="chapter-list">
+        
+        <!-- Active Course Chapters -->
+        <div class="active-course-chapters">
+            <h2>{{ active_course.title }} Chapters</h2>
+            
+            <!-- Completed Chapters -->
+            {% for chapter in completed_chapters %}
+            <div class="chapter-item completed">
+                {{ chapter.title }}
+            </div>
+            {% endfor %}
+            
+            <!-- Active Chapter -->
+            <div class="chapter-item active">
+                {{ active_chapter.title }}
+                <button class="complete-button" onclick="completeChapter()">Completed?</button>
+            </div>
+            
+            <!-- Upcoming Chapters -->
+            {% for chapter in upcoming_chapters %}
+            <div class="chapter-item upcoming">
+                {{ chapter.title }}
+            </div>
+            {% endfor %}
+        </div>
+        
+    </div>
+    
+    <!-- Button to complete active chapter -->
+    <form id="complete-chapter-form" method="POST" action="{{ url_for('progress') }}">
+        <button type="submit" style="display: none;"></button>
+    </form>
+</section>
+
+<script>
+    function completeChapter() {
+        document.getElementById('complete-chapter-form').submit();
+    }
+</script>
+{% endblock %}

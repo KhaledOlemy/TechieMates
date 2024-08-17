@@ -49,7 +49,7 @@ class DBStorage:
         else:
             classes = [Roadmap, User, Message, Course, Vendor, Chapter, Progress]
         for class_name in classes:
-            class_instances = self.__session.query(class_name)
+            class_instances = self.__session.query(class_name).order_by(class_name.updated_at)
             for ins in class_instances:
                 out_dict["{}.{}".format(type(ins).__name__, ins.id)] = ins
         return out_dict
@@ -98,9 +98,13 @@ class DBStorage:
                 break
         return desired_instance
 
+
+
     def count(self, cls=None):
         """counts the number of objects in storage"""
         if cls:
             return len(models.storage.all(cls))
         else:
             return len(models.storage.all())
+
+

@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block title %}Login{% endblock %}
+{% block content %}
+<div class="form-container">
+    <h1>Login</h1>
+    {% if error_message %}
+    <div id="error-box" style="background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; border-radius: 5px; padding: 10px; margin-bottom: 10px;">
+        {{ error_message }}
+    </div>
+    {% endif %}
+    <form action="/login" method="POST">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+        <button type="submit">Login</button>
+    </form>
+</div>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    var errorBox = document.getElementById('error-box');
+    if (errorBox) {
+        setTimeout(function() {
+            fadeOut(errorBox);
+        }, 3000); // Change the duration as needed (3000ms = 3 seconds)
+    }
+});
+
+function fadeOut(element) {
+    var opacity = 1;
+    var timer = setInterval(function() {
+        if (opacity <= 0) {
+            clearInterval(timer);
+            element.style.display = 'none';
+        }
+        element.style.opacity = opacity;
+        opacity -= 0.05;
+    }, 100);
+}
+</script>
+{% endblock %}

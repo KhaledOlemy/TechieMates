@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+
+{% block title %}{{ page_title }}{% endblock %}
+
+{% block content %}
+<section id="community-messaging-page">
+    <h1>{{ page_title }} Community</h1>
+    <div id="messaging-scroll-container">
+        <div id="messaging-container">
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="message-container {% if message.sender_same_user %}sent{% else %}received{% endif %}">
+                        <img src="{% if message.sender_same_user %}../static/images/pngegg.png{% else %}../static/images/256f91d82d37bf063b2c26412b89d5b1.jpg{% endif %}" alt="User Photo" class="user-photo {% if message.sender_same_user %}sent{% else %}received{% endif %}">
+                        <div class="message-box">
+                            <p>{{ message.text }}</p>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p style="margin-bottom: 20px;">No messages yet!</p>
+            {% endif %}
+        </div>
+    </div>
+    {% if ability_to_send %}
+    <form id="message-form" action="{{ url_for('single_community', roadmap_id=roadmap_id) }}" method="POST" onsubmit="return validateForm()" style="position: relative;">
+        <textarea name="text" id="text" rows="3" placeholder="Type your message here" onkeydown="handleEnter(event)"></textarea>
+        <button type="submit">Send</button>
+    </form>
+    {% endif %}
+</section>
+
+<div id="notification" class="notification"></div>
+
+<script>
+    function validateForm() {
+        var message = document.getElementById("text").value.trim();
+        if (message === "") {
+            showNotification("Message cannot be empty!");
+            return false; // Prevent form submission
+        }
+        return true; // Allow form submission
+    }
+
+    function showNotification(message) {
+        var notification = document.getElementById("notification");
+        notification.textContent = message;
+        notification.classList.add("show");
+
+        setTimeout(function() {
+            notification.classList.remove("show");
+        }, 1250); // 5 seconds
+    }
+
+    function handleEnter(event) {
+        if (event.key === 'Enter') {
+            event.preventDefault();
+            if (validateForm()) {
+                document.getElementById('message-form').submit();
+            }
+        }
+    }
+
+    // Scroll the messaging container to the bottom
+    var messagingContainer = document.getElementById("messaging-scroll-container");
+    messagingContainer.scrollTop = messagingContainer.scrollHeight;
+</script>
+{% endblock %}

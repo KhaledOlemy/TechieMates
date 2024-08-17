@@ -72,6 +72,7 @@ class FileStorage():
                 break
         return desired_instance
 
+
     def count(self, cls=None):
         if cls:
             return len(models.storage.all(cls))

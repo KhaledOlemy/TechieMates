@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block title %}Messaging with {{ other_user_name }}{% endblock %}
+
+{% block content %}
+<!-- Notification -->
+<div id="notification" class="notification"></div>
+<!-- End of Notification -->
+
+<section id="single-messaging-page">
+    <h1>Messaging with <a href="{{ url_for('get_another_user', user_id=user_id) }}"> {{ other_user_name }} </a></h1>
+    <div id="messaging-scroll-container">
+        <div id="messaging-container">
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="message-container {% if message.sender_same_user %}sent{% else %}received{% endif %}">
+                        <img src="{% if message.sender_same_user %}../1/images/pngegg.png{% else %}../static/images/256f91d82d37bf063b2c26412b89d5b1.jpg{% endif %}" alt="User Photo" class="user-photo {% if message.sender_same_user %}sent{% else %}received{% endif %}">
+                        <div class="message-box">
+                            <p>{{ message.text }}</p>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p>No messages yet!</p>
+            {% endif %}
+        </div>
+    </div>
+    <form id="message-form" action="{{url_for('single_messaging', user_id=user_id)}}" method="POST" onsubmit="return validateForm()" style="position: relative; margin-left: 0px;">
+        <textarea name="text" id="message" rows="11" placeholder="Type your message here" onkeydown="handleKeyDown(event)"></textarea>
+        <button type="submit" onclick="return validateForm()">Send</button>
+    </form>
+    
+</section>
+

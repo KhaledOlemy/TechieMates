@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<div class="home-container">
+    <h1>Welcome to Your App</h1>
+    <img src="{{ url_for('static', filename='home_image.jpg') }}" alt="Home Image">
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed et justo vitae turpis facilisis varius. Cras vel ligula ac nulla condimentum convallis. Donec nec dictum ligula, eget rutrum tortor.</p>
+    <h2>Our Mission</h2>
+    <p>Nulla facilisi. Fusce ultricies, elit non pulvinar sodales, nunc ipsum semper elit, et tincidunt tortor nulla a libero. Duis auctor dolor ut lacinia suscipit.</p>
+</div>
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %}Roadmaps{% endblock %}
+
+{% block content %}
+<section id="roadmaps">
+    <h1>Roadmaps</h1>
+    <ul class="roadmaps-list">
+        {% for roadmap in roadmaps %}
+        <li class="roadmaps-item">
+            <div class="roadmaps-info">
+                <h2 class="roadmaps-title"><a href="{{roadmap.link}}">{{ roadmap.title }}</a></h2>
+                <p class="roadmaps-description">{{ roadmap.description }}</p>
+            </div>
+            <a class="roadmap-button" href="{{ roadmap.link }}">See Roadmap</a>
+        </li>
+        {% endfor %}
+    </ul>
+</section>
+{% endblock %}
