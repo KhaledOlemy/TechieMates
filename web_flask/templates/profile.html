@@ -3,35 +3,51 @@
 {% block title %}{{ data.user_name }}'s Profile{% endblock %}
 
 {% block content %}
+{% if error_message %}
+<div id="error-box" style="background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; border-radius: 5px; padding: 10px; font-size: 16px; margin-bottom: 10px;">
+    {{ error_message }}
+</div>
+{% endif %}
 <section id="profile-page">
-    <div class="profile-headers">
-        <div class="profile-photos">
+    <div class="profile-header">
+        <div class="profile-photo">
             <!-- User's photo goes here -->
-            <img src="../static/images/pngegg.png" alt="Profile Photo">
+            <img src="{{ data.photo }}" alt="Profile Photo">
         </div>
         <div class="profile-info">
             <div class="user-info">
+
                 <h1>{{ data.user_name }}</h1>
                 {% if message_link %}
-                <a href="{{ message_link}}" class="message-button"><i class="far fa-envelope"></i> Message User</a>
+                <a href="{{ message_link }}" class="message-button" style="width: 120px;"><i class="far fa-envelope"></i> Message User</a>
+                {% endif %}
+                {% if data.bind_button %}
+                <a href="{{ data.bind_button }}" class="message-button" style="width: 100px;"><i class="far fa-envelope"></i>Partner Up</a>
+                {% elif data.unbind_button %}
+                <a href="{{ data.unbind_button }}" class="message-button" style="width: 100px;"><i class="far fa-envelope"></i>Leave Partner</a>
                 {% endif %}
             </div>
             {% if data.current_roadmap %}
             <div class="section">
-                <h2><i class="fas fa-map-marker-al"></i> Current Roadmaps</h2>
-                <p>{{data.current_roadmap}}</p>
+                <h2><i class="fas fa-map-marker-alt"></i> Current Roadmap</h2>
+                <p>{{ data.current_roadmap }}</p>
             </div>
-            {%endif%}
+            {% else %}
+            <div class="section">
+                <h2><i class="fas fa-map-marker-alt"></i> Current Roadmap</h2>
+                <p>No active roadmap</p>
+            </div>
+            {% endif %}
 
             {% if data.current_course %}
-            <div class="sections">
+            <div class="section">
                 <h2><i class="fas fa-book"></i> Current Course</h2>
                 <p>{{ data.current_course }}</p>
             </div>
             {% endif %}
 
             {% if data.completed_courses %}
-            <div class="sections">
+            <div class="section">
                 <h2><i class="fas fa-check-circle"></i> Completed Courses</h2>
                 <ul>
                     {% for course in data.completed_courses %}
@@ -41,13 +57,54 @@
             </div>
             {% endif %}
 
+            {% if data.completed_roadmaps %}
+            <div class="section">
+                <h2><i class="fas fa-check-circle"></i> Completed Roadmaps</h2>
+                <ul>
+                    {% for ompleted_roadmap in data.completed_roadmaps %}
+                    <li>{{ ompleted_roadmap }} <i class="far fa-check-circle"></i></li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
+
             {% if data.partner_name %}
             <div class="section">
-                <h2><i class="fas fa-user-friends"></i> Partners Name</h2>
-                <p>{{ data.partner_name }}</p>
+                <h2><i class="fas fa-user-friends"></i> Partner Name</h2>
+                <a href="{{ data.partner_link }}" style="font-size: 18px; margin-bottom: 5px; margin-left: 10px; text-decoration: none; color: #203a53; font-size: 20px; font-weight: bold;">{{ data.partner_name }}</a>
             </div>
-            {%endif%}
+            {% endif %}
         </div>
     </div>
 </section>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var errorBox = document.getElementById('error-box');
+        var successBox = document.getElementById('success-box');
+        
+        if (errorBox) {
+            setTimeout(function() {
+                fadeOut(errorBox);
+            }, 10000); // Hide after 10 seconds
+        }
+        
+        if (successBox) {
+            setTimeout(function() {
+                fadeOut(successBox);
+            }, 10000); // Hide after 10 seconds
+        }
+    });
+    
+    function fadeOut(element) {
+        var opacity = 1;
+        var timer = setInterval(function() {
+            if (opacity <= 0) {
+                clearInterval(timer);
+                element.style.display = 'none';
+            }
+            element.style.opacity = opacity;
+            opacity -= 0.05;
+        }, 100);
+    }
+    </script>
 {% endblock %}

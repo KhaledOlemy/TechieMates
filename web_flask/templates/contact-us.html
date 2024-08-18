@@ -1,9 +1,9 @@
 {% extends "base.html" %}
 
-{% block title %}{{ roadmap_title }}{% endblock %}
+{% block title %}Contact Us{% endblock %}
 
 {% block content %}
-<section id="partners-page">
+<div id="contact-us" class="form-container">
     {% if error_message %}
     <div id="error-box" style="background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; border-radius: 5px; padding: 10px; font-size: 16px; margin-bottom: 10px;">
         {{ error_message }}
@@ -13,20 +13,26 @@
         {{ success_message }}
     </div>
     {% endif %}
-    <h1>{{ roadmap_title }}</h1>
-    <div class="partners-container">
-        {% for partner in partners %}
-        <div class="partner-item">
-            <div class="partner-info">
-                <a href="{{ partner.link }}" class="partner-name">{{ partner.fullname }}</a>
-                <button class="partner-button" onclick="window.location.href='{{ partner.button }}'">Choose as a Partner</button>
-            </div>
-        </div>
+    <h1>Contact Us</h1>
+    <p style="margin-bottom: 10px;">Feel free to reach out to us with any questions or feedback you may have.</p>
+    <form action="/contact-us" method="POST"> <!--implement later-->
+        <label for="name">Name:</label>
+        {% if session.user and session.user.first_name %}
+            <input type="text" id="name" name="name" value="{{ session.user.first_name }} {{ session.user.last_name }}" readonly>
         {% else %}
-        <h2 style="margin-top: 50px;">No partners available at the moment, please check again later.</h2>
-        {% endfor %}
-    </div>
-</section>
+            <input type="text" id="name" name="name" required>
+        {% endif %}
+        <label for="email">Email:</label>
+        {% if session.user and session.user.email %}
+            <input type="email" id="email" name="email" value="{{ session.user.email }}" readonly>
+        {% else %}
+            <input type="email" id="email" name="email" required>
+        {% endif %}
+        <label for="message">Message:</label>
+        <textarea id="message" name="message" rows="10" required style="resize: none;"></textarea>
+        <button type="submit" style="padding-top: 10px; margin-top: 5px;">Send</button>
+    </form>
+</div>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         var errorBox = document.getElementById('error-box');

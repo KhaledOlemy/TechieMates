@@ -1,7 +1,13 @@
 {% extends "base.html" %}
 {% block title %}Sign Up{% endblock %}
+{% block extra_css %}
+<style>
+    /* CSS for image selection box */
+
+</style>
+{% endblock %}
 {% block content %}
-<div class="form-container">
+<div class="form-container" id="page-signup">
     <h1>Sign Up</h1>
     {% if error_message %}
     <div id="error-box" style="background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; border-radius: 5px; padding: 10px; font-size: 16px; margin-bottom: 10px;">
@@ -15,15 +21,143 @@
         <label for="email">Email:</label>
         <input type="email" id="email" name="email" required>
         <label for="first_name">First Name:</label>
-        <input type="text" id="first_name" name="first_name" required>
+        <input type="text" id="first_name" name="first_name" pattern="[A-Za-z]{2,}" title="First name must be at least 2 characters long and contain only letters." required>
         <label for="last_name">Last Name:</label>
-        <input type="text" id="last_name" name="last_name" required>
+        <input type="text" id="last_name" name="last_name" pattern="[A-Za-z]{2,}" title="Last name must be at least 2 characters long and contain only letters." required>
+        <label for="password">Password:</label>
         <input type="password" id="password" name="password" required>
+        <label for="confirm_password">Confirm Password:</label>
         <input type="password" id="confirm_password" name="confirm_password" required>
         <label for="phone_number">Phone Number:</label>
-        <input type="text" id="phone_number" name="phone_number">
-        <button type="submit">Sign Up</button>
+        <input type="tel" id="phone_number" name="phone_number" pattern="\+?\d{10,15}">
+        <label for="Profile picture">Select Profile Picture:</label>
+        <div class="image-selection-box">
+            {% for image in profile_pics %}
+            <label class="image-container">
+                <input type="radio" name="photo" value="{{ image.loc.split('/')[-1] }}" {% if loop.first %}checked{% endif %}>
+                <img src="{{ image.loc }}" alt="{{ image.name }}">
+                <p>{{ image.name }}</p>
+            </label>
+            {% endfor %}
+        </div>
+        <button type="submit" style="margin-top: 5px; height: 40px;">Sign Up</button>
     </form>
 </div>
 
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+
+    
+    var confirmPasswordInput = document.getElementById("confirm_password");
+    confirmPasswordInput.addEventListener("blur", function() {
+        var passwordInput = document.getElementById("password");
+        var confirmPassword = confirmPasswordInput.value;
+        var password = passwordInput.value;
+        
+        if (confirmPassword !== password) {
+            confirmPasswordInput.style.border = "1px solid red";
+        } else {
+            confirmPasswordInput.style.border = ""; // Reset border to default
+        }
+    });
+
+    var phoneNumberInput = document.getElementById("phone_number");
+    phoneNumberInput.addEventListener("input", function() {
+        var phoneNumber = phoneNumberInput.value;
+        phoneNumber = phoneNumber.replace(/\D/g,''); // Remove non-digit characters
+        phoneNumber = phoneNumber.slice(0, 15); // Limit to 15 characters
+        phoneNumberInput.value = phoneNumber;
+    });
+});
+
+document.getElementById("signupForm").addEventListener("submit", function(event) {
+    var password = document.getElementById("password").value;
+    var confirmPassword = document.getElementById("confirm_password").value;
+
+    if (password !== confirmPassword) {
+        event.preventDefault(); // Prevent form submission
+        document.getElementById("password-error").textContent = 'Passwords do not match.';
+        var topErrorBox = document.getElementById("top-error-box");
+        topErrorBox.style.display = "block";
+        topErrorBox.style.opacity = 1; // Reset opacity
+        clearTimeout(topErrorBox.fadeoutTimer); // Clear any existing fadeout timer
+        setTimeout(function() {
+            fadeOut(topErrorBox);
+        }, 3000); // Change the duration as needed (3000ms = 3 seconds)
+    }
+
+    var requirements = [];
+    if (password.length < 8) {
+        requirements.push('Password must be at least 8 characters long');
+    }
+    if (!/[A-Z]/.test(password)) {
+        requirements.push('Must include at least one uppercase letter');
+    }
+    if (!/[a-z]/.test(password)) {
+        requirements.push('Must include at least one lowercase letter');
+    }
+    if (!/\d/.test(password)) {
+        requirements.push('Must include at least one number');
+    }
+
+    if (requirements.length > 0) {
+        event.preventDefault(); // Prevent form submission
+        document.getElementById("password-error").innerHTML = '<ul>';
+        requirements.forEach(function(req) {
+            document.getElementById("password-error").innerHTML += '<li>' + req + '</li>';
+        });
+        document.getElementById("password-error").innerHTML += '</ul>';
+        var topErrorBox = document.getElementById("top-error-box");
+        topErrorBox.style.display = "block";
+        topErrorBox.style.opacity = 1; // Reset opacity
+        clearTimeout(topErrorBox.fadeoutTimer); // Clear any existing fadeout timer
+        setTimeout(function() {
+            fadeOut(topErrorBox);
+        }, 3000); // Change the duration as needed (3000ms = 3 seconds)
+    }
+});
+
+function fadeOut(element) {
+    var opacity = 1;
+    var timer = setInterval(function() {
+        if (opacity <= 0) {
+            clearInterval(timer);
+            element.style.display = 'none';
+        }
+        element.style.opacity = opacity;
+        opacity -= 0.05;
+    }, 100);
+    element.fadeoutTimer = timer; // Store the fadeout timer on the element
+}
+</script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var errorBox = document.getElementById('error-box');
+        var successBox = document.getElementById('success-box');
+        
+        if (errorBox) {
+            setTimeout(function() {
+                fadeOut(errorBox);
+            }, 10000); // Hide after 10 seconds
+        }
+        
+        if (successBox) {
+            setTimeout(function() {
+                fadeOut(successBox);
+            }, 10000); // Hide after 10 seconds
+        }
+    });
+    
+    function fadeOut(element) {
+        var opacity = 1;
+        var timer = setInterval(function() {
+            if (opacity <= 0) {
+                clearInterval(timer);
+                element.style.display = 'none';
+            }
+            element.style.opacity = opacity;
+            opacity -= 0.05;
+        }, 100);
+    }
+    </script>
 {% endblock %}

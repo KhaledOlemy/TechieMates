@@ -4,13 +4,26 @@
 
 {% block content %}
 <section id="community-messaging-page">
+    {% if error_message %}
+    <div id="error-box" style="background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; border-radius: 5px; padding: 10px; font-size: 16px; margin-bottom: 10px;">
+        {{ error_message }}
+    </div>
+    {% endif %}
     <h1>{{ page_title }} Community</h1>
     <div id="messaging-scroll-container">
         <div id="messaging-container">
             {% if messages %}
                 {% for message in messages %}
+                <div class="senderman {% if message.sender_same_user %}sent{% else %}received{% endif %}" style="margin-bottom: 10px; margin-left: 10px; font-size: 14px; margin-right: 15px;">
+                    {% if not message.sender_same_user %}
+                    <a href="{{ message.profile_link }}" style="text-decoration: none; color: #385470;">{{ message.sender.split(' ')[0] }}</a>
+                    {% else %}
+                    <p style="color: #294f75;">{{ message.sender.split(' ')[0] }}</p>
+                    {% endif %}
+                </div>
+                
                     <div class="message-container {% if message.sender_same_user %}sent{% else %}received{% endif %}">
-                        <img src="{% if message.sender_same_user %}../static/images/pngegg.png{% else %}../static/images/256f91d82d37bf063b2c26412b89d5b1.jpg{% endif %}" alt="User Photo" class="user-photo {% if message.sender_same_user %}sent{% else %}received{% endif %}">
+                        <img src="{{ message.photo }}" alt="User Photo" class="user-photo {% if message.sender_same_user %}sent{% else %}received{% endif %}">
                         <div class="message-box">
                             <p>{{ message.text }}</p>
                         </div>
@@ -25,6 +38,11 @@
     <form id="message-form" action="{{ url_for('single_community', roadmap_id=roadmap_id) }}" method="POST" onsubmit="return validateForm()" style="position: relative;">
         <textarea name="text" id="text" rows="3" placeholder="Type your message here" onkeydown="handleEnter(event)"></textarea>
         <button type="submit">Send</button>
+    </form>
+    {% else %}
+    <form id="message-form" action="{{ url_for('single_community', roadmap_id=roadmap_id) }}" method="POST" onsubmit="return validateForm()" style="position: relative;">
+        <textarea name="text" id="text" rows="3" placeholder="You are not enrolled in this roadmap." onkeydown="handleEnter(event)" disabled></textarea>
+        <button type="submit" disabled>Send</button>
     </form>
     {% endif %}
 </section>
@@ -64,4 +82,34 @@
     var messagingContainer = document.getElementById("messaging-scroll-container");
     messagingContainer.scrollTop = messagingContainer.scrollHeight;
 </script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var errorBox = document.getElementById('error-box');
+        var successBox = document.getElementById('success-box');
+        
+        if (errorBox) {
+            setTimeout(function() {
+                fadeOut(errorBox);
+            }, 10000); // Hide after 10 seconds
+        }
+        
+        if (successBox) {
+            setTimeout(function() {
+                fadeOut(successBox);
+            }, 10000); // Hide after 10 seconds
+        }
+    });
+    
+    function fadeOut(element) {
+        var opacity = 1;
+        var timer = setInterval(function() {
+            if (opacity <= 0) {
+                clearInterval(timer);
+                element.style.display = 'none';
+            }
+            element.style.opacity = opacity;
+            opacity -= 0.05;
+        }, 100);
+    }
+    </script>
 {% endblock %}

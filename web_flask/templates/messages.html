@@ -9,14 +9,19 @@
         {% if last_messages %}
             {% for message in last_messages %}
                 <div class="message-container">
-                    <img src="../static/images/pngegg.png" class="messages-photo" alt="User Photo">
+                    <img src="{{ message.other_user_photo }}" class="message-photo" alt="User Photo">
                     <div class="message-box {% if message.sender_same_user %}sent{% else %}received{% endif %}">
-                        <div class="messages-info">
-                            <a href="{{ message.link }}" class="messages-sender">{{message.other_user_name }}</a>
-                            <span class="messages-time">{{ message.time }}</span>
+                        <div class="message-info">
+                            <a href="{{ message.link }}" class="message-sender">{{ message.other_user_name }}</a>
+                            <span class="message-time">{{ message.time }}</span>
                         </div>
+                        {% if message.sender_same_user %}
+                        <p>You: {{ message.last_message_sent }}</p>
+                        {% else %}
                         <p>{{ message.other_user_name }}: {{ message.last_message_sent }}</p>
+                        {% endif %}
                     </div>
+                </div>
             {% endfor %}
         {% else %}
             <p>You have no messages!</p>

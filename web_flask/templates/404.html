@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 Not Found</title>
+
+</head>
+<body>
+    
+    <div class="not-found-container">
+        <h1>404</h1>
+        <p>Oops! The page you are looking for could not be found.</p>
+        <a href="{{ url_for('home') }}">Return Home</a>
+    </div>
+    <script>
+        document.querySelector('.not-found-container h1').addEventListener('mouseover', function() {
+            this.style.color = '#34495e'; // Changes text color on hover
+        });
+        document.querySelector('.not-found-container h1').addEventListener('mouseout', function() {
+            this.style.color = '#2c3e50'; // Reverts text color on mouse out
+        });
+    </script>
+        <style>
+            body {
+                background-color: #f8f9fa; /* Light slightly gray background */
+                font-family: Arial, sans-serif;
+                margin: 0;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+            }
+            .not-found-container {
+                text-align: center;
+                transition: transform 0.3s ease-out;
+            }
+            .not-found-container:hover {
+                transform: scale(2);
+            }
+            .not-found-container h1 {
+                font-size: 92px;
+                color: #2c3e50; /* Dark blue */
+                margin: 0;
+                position: relative;
+                animation: move 1s infinite alternate;
+            }
+            @keyframes move {
+                0% { left: -20px; }
+                100% { left: 20px; }
+            }
+            .not-found-container p {
+                font-size: 24px;
+                color: #7f8c8d; /* Gray text */
+            }
+            .not-found-container a {
+                font-size: 22px;
+                color: #fff;
+                background-color: #2c3e50; /* Dark blue */
+                padding: 10px 15px;
+                border-radius: 5px;
+                text-decoration: none;
+                box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+                transition: background-color 0.3s ease, transform 0.3s ease;
+            }
+            .not-found-container a:hover {
+                background-color: #34495e; /* Slightly lighter blue */
+                transform: translateY(-5px);
+            }
+        </style>
+</html>

@@ -3,10 +3,122 @@
 {% block title %}About Us{% endblock %}
 
 {% block content %}
-<div class="about-container">
-    <h1>About Us</h1>
-    <p>Welcome to [Your Company Name], where we connect ambitious individuals and innovative companies to collaborate on technology roadmaps and achieve their goals together.</p>
-    <p>At [Your Company Name], we believe that great things happen when talented individuals and forward-thinking companies come together. Whether you're a developer with a groundbreaking idea or a company looking to expand your technical capabilities, our platform provides the tools and resources you need to find the perfect partner and bring your vision to life.</p>
-    <p>Our mission is to empower individuals and companies to thrive in the ever-evolving tech landscape by facilitating meaningful partnerships and fostering a culture of collaboration and innovation.</p>
-</div>
+<!-- About Page Content Goes Here -->
+
+<section class="about-section">
+    <div class="container">
+        <h2>Inspiration Behind Techie Mate</h2>
+        <p>Every great project has a story behind it, and Techie Mate is no exception. It all started with a shared passion for software engineering and a desire to make learning more accessible and enjoyable.</p>
+        <p>As two aspiring developers, Khaled and Ahmed found themselves navigating the vast and often overwhelming landscape of tech education. They encountered numerous challenges, from finding the right resources to staying motivated and accountable.</p>
+        <p>Driven by their own experiences, Khaled and Ahmed embarked on a journey to create a platform that would address these challenges head-on. They envisioned a place where aspiring developers could find curated learning paths, connect with peers, and embark on their learning journey with confidence.</p>
+        <p>With dedication, perseverance, and a shared vision, Techie Mate was born. What started as a passion project soon evolved into a comprehensive platform designed to empower learners and foster a vibrant community.</p>
+        <p>Today, Techie Mate stands as a testament to the power of collaboration and the transformative potential of tech education. It's not just a project; it's a reflection of Khaled and Ahmed's commitment to making a difference in the world of software engineering.</p>
+        <p>Join us on this journey, and together, let's unlock the endless possibilities of technology.</p>
+        <p>Psst! This project is also a Portfolio Project for Holberton School. <a href="https://www.holbertonschool.com" target="_blank">Learn more</a>.</p>
+    </div>
+</section>
+
+<section class="team-section">
+    <div class="container">
+        <h2>The Team Behind Techie Mate</h2>
+        <div class="team-member">
+            <img src="../static/images/khaled.png" alt="Khaled Elolemy">
+            <div class="member-details">
+                <h3>Khaled Elolemy</h3>
+                <p>Email: <a href="mailto:khaledolemy@gmail.com">khaledolemy@gmail.com</a></p>
+                <p>GitHub: <a href="https://github.com/khaledolemy" target="_blank">github.com/khaledolemy</a></p>
+                <p>LinkedIn: <a href="https://www.linkedin.com/in/khaledolemy" target="_blank">linkedin.com/khaledolemy</a></p>
+            </div>
+        </div>
+        <div class="team-member">
+            <img src="../static/images/ahmed.png" alt="Ahmed Hussien" style="transform: scaleX(-1);">
+            <div class="member-details">
+                <h3>Ahmed Hussien</h3>
+                <p>Email: <a href="mailto:ahmedhussien@gmail.com">ahmedhussien@gmail.com</a></p>
+                <p>GitHub: <a href="https://github.com/ahmedgamal" target="_blank">github.com/ahmedgamal</a></p>
+                <p>LinkedIn: <a href="https://www.linkedin.com/in/ahmedgamal" target="_blank">linkedin.com/ahmedgamal</a></p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- End About Page Content -->
+
+
+<style>
+    /* Custom CSS for About page */
+    .about-section {
+        background-color: #fff;
+        padding: 50px 50px;
+
+    }
+
+    .about-section h2 {
+        font-size: 2.5em;
+        margin-bottom: 40px;
+        color: #34495e;
+    }
+
+    .about-section p {
+        font-size: 1.1em;
+        line-height: 1.6;
+        margin-bottom: 20px;
+        color: #34495e;
+    }
+
+    .about-section a {
+        color: #2980b9;
+        text-decoration: none;
+    }
+
+    .about-section a:hover {
+        text-decoration: underline;
+    }
+
+    .team-section {
+        background-color: #f9f9f9;
+        padding: 50px 50px;
+    }
+
+    .team-section h2 {
+        font-size: 2.5em;
+        margin-bottom: 20px;
+        color: #34495e;
+    }
+
+    .team-member {
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+
+    .team-member img {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        margin-right: 20px;
+    }
+
+    .member-details h3 {
+        font-size: 1.5em;
+        margin-bottom: 10px;
+        color: #34495e;
+    }
+
+    .member-details p {
+        font-size: 1.1em;
+        line-height: 1.6;
+        margin-bottom: 10px;
+        color: #34495e;
+    }
+
+    .member-details a {
+        color: #2980b9;
+        text-decoration: none;
+    }
+
+    .member-details a:hover {
+        text-decoration: underline;
+    }
+</style>
 {% endblock %}

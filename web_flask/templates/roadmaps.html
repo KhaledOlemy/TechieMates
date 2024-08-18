@@ -4,17 +4,52 @@
 
 {% block content %}
 <section id="roadmaps">
+    {% if error_message %}
+    <div id="error-box" style="background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; border-radius: 5px; padding: 10px; font-size: 16px; margin-bottom: 10px;">
+        {{ error_message }}
+    </div>
+    {% endif %}
     <h1>Roadmaps</h1>
-    <ul class="roadmaps-list">
+    <ul class="roadmap-list">
         {% for roadmap in roadmaps %}
-        <li class="roadmaps-item">
-            <div class="roadmaps-info">
-                <h2 class="roadmaps-title"><a href="{{roadmap.link}}">{{ roadmap.title }}</a></h2>
-                <p class="roadmaps-description">{{ roadmap.description }}</p>
+        <li class="roadmap-item">
+            <div class="roadmap-info">
+                <h2 class="roadmap-title"><a href="{{ roadmap.link }}">{{ roadmap.title }}</a></h2>
+                <p class="roadmap-description">{{ roadmap.description }}</p>
             </div>
             <a class="roadmap-button" href="{{ roadmap.link }}">See Roadmap</a>
         </li>
         {% endfor %}
     </ul>
 </section>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var errorBox = document.getElementById('error-box');
+        var successBox = document.getElementById('success-box');
+        
+        if (errorBox) {
+            setTimeout(function() {
+                fadeOut(errorBox);
+            }, 10000); // Hide after 10 seconds
+        }
+        
+        if (successBox) {
+            setTimeout(function() {
+                fadeOut(successBox);
+            }, 10000); // Hide after 10 seconds
+        }
+    });
+    
+    function fadeOut(element) {
+        var opacity = 1;
+        var timer = setInterval(function() {
+            if (opacity <= 0) {
+                clearInterval(timer);
+                element.style.display = 'none';
+            }
+            element.style.opacity = opacity;
+            opacity -= 0.05;
+        }, 100);
+    }
+    </script>
 {% endblock %}

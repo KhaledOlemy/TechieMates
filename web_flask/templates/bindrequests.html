@@ -1,0 +1,97 @@
+<!-- bindrequests.html -->
+
+{% extends "base.html" %}
+
+{% block content %}
+<div id="bind-requests-page">
+    {% if error_message %}
+    <div id="error-box" style="background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; border-radius: 5px; padding: 10px; font-size: 16px; margin-bottom: 10px;">
+        {{ error_message }}
+    </div>
+    {% elif success_message %}
+    <div id="success-box" style="background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb; border-radius: 5px; padding: 10px; margin-bottom: 10px;">
+        {{ success_message }}
+    </div>
+    {% endif %}
+    {% if not session["user"]["partner_id"] %}
+    {% if session.get('user', {}).get('roadmap_id') and not session.get('user', {}).get('partner_id') %}
+    <a href="{{ url_for('get_roadmap_partners', roadmap_id=session['user']['roadmap_id']) }}" class="button partners-button" style="display: flex; align-self: flex-end; margin-bottom: 20px;">See available partners</a>
+    {% endif %}
+    <h1>Received Requests</h1>
+    {% if received_requests %}
+    <div class="split-container">
+        <div class="received-requests">
+            {% for request in received_requests %}
+            <div class="partner-item">
+                <div class="partner-info">
+                    <a href="{{ url_for('get_another_user', user_id=request['from_user']) }}" class="partner-name">{{ request.user_name }}</a>
+                    <form action="{{ request.accept }}" method="post">
+                        <input type="hidden" name="request_value" value="accept">
+                        <button type="submit" class="partner-button">Accept</button>
+                    </form>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="divider"></div> <!-- Vertical divider line -->
+    </div>
+    {% else %}
+    <p>No received requests available.</p>
+    {% endif %}
+    
+    <h1>Sent Requests</h1>
+    {% if sent_requests %}
+    <div class="split-container">
+        <div class="sent-requests">
+            {% for request in sent_requests %}
+            <div class="partner-item">
+                <div class="partner-info">
+                    <a href="{{ url_for('get_another_user', user_id=request['to_user']) }}" class="partner-name">{{ request.user_name }}</a>
+                    <form action="{{ request.retract }}" method="post">
+                        <input type="hidden" name="request_value" value="accept">
+                        <button type="submit" class="partner-button">Retract</button>
+                    </form>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="divider"></div> <!-- Vertical divider line -->
+    </div>
+    {% else %}
+    <p>No sent requests available.</p>
+    {% endif %}
+    {% else %}
+    <h1>You currently have a partner, Work together to achieve completion of the Roadmap</h1>
+    {% endif %}
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var errorBox = document.getElementById('error-box');
+        var successBox = document.getElementById('success-box');
+        
+        if (errorBox) {
+            setTimeout(function() {
+                fadeOut(errorBox);
+            }, 10000); // Hide after 10 seconds
+        }
+        
+        if (successBox) {
+            setTimeout(function() {
+                fadeOut(successBox);
+            }, 10000); // Hide after 10 seconds
+        }
+    });
+    
+    function fadeOut(element) {
+        var opacity = 1;
+        var timer = setInterval(function() {
+            if (opacity <= 0) {
+                clearInterval(timer);
+                element.style.display = 'none';
+            }
+            element.style.opacity = opacity;
+            opacity -= 0.05;
+        }, 100);
+    }
+    </script>
+{% endblock %}

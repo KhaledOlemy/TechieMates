@@ -4,10 +4,295 @@
 
 {% block content %}
 <div class="home-container">
-    <h1>Welcome to Your App</h1>
-    <img src="{{ url_for('static', filename='home_image.jpg') }}" alt="Home Image">
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed et justo vitae turpis facilisis varius. Cras vel ligula ac nulla condimentum convallis. Donec nec dictum ligula, eget rutrum tortor.</p>
-    <h2>Our Mission</h2>
-    <p>Nulla facilisi. Fusce ultricies, elit non pulvinar sodales, nunc ipsum semper elit, et tincidunt tortor nulla a libero. Duis auctor dolor ut lacinia suscipit.</p>
+    {% if error_message %}
+    <div id="error-box" style="background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; border-radius: 5px; padding: 10px; font-size: 16px; margin-bottom: 10px;">
+        {{ error_message }}
+    </div>
+    {% elif success_message %}
+    <div id="success-box" style="background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb; border-radius: 5px; padding: 10px; margin-bottom: 10px;">
+        {{ success_message }}
+    </div>
+    {% endif %}
+    <section class="hero-section">
+        <div class="back">
+            <img src="../static/images/pngwing.com (1).png" alt="x" style="z-index: -100; position: relative;">
+        </div>
+        <div class="container">
+            <h1>Welcome to Techie Mate</h1>
+            <p>Your Ultimate Guide to Software Engineering Mastery</p>
+        </div>
+    </section>
+    
+    <div class="all-shit">
+        <section >
+            <div class="container">
+                <h2>About Techie Mate</h2>
+                <p>Techie Mate is a revolutionary platform designed to empower aspiring software engineers with comprehensive learning resources and personalized guidance.</p>
+                <p>Our mission is to democratize access to tech education and foster a supportive community for skill development and career advancement.</p>
+            </div>
+        </section>
+        
+        <section >
+            <div class="container">
+                <h2>Explore Roadmaps</h2>
+                <p>Embark on a structured learning journey with our meticulously crafted roadmaps covering a wide array of technologies and career tracks.</p>
+                <p>Whether you aspire to become a full-stack developer, data scientist, or cybersecurity expert, we have the roadmap to guide you towards success.</p>
+            </div>
+        </section>
+        
+        <section>
+            <div class="container">
+                <h2>Partnering System</h2>
+                <p>At Techie Mate, we understand that learning is more effective and enjoyable when done collaboratively. That's why we've developed a sophisticated partnering system to connect you with like-minded individuals who share your passion for learning.</p>
+                <p>By partnering up with fellow learners, you can exchange knowledge, offer mutual support, and hold each other accountable, accelerating your learning journey and forging lasting connections.</p>
+            </div>
+        </section>
+        
+        <section >
+            <div class="container">
+                <h2>Our Strategy</h2>
+                <p>Our approach is grounded in the belief that education should be accessible, engaging, and effective. To achieve this, we employ the following strategies:</p>
+                <ul>
+                    <li>Curated Learning Paths: We curate comprehensive learning paths tailored to different skill levels and career goals, ensuring a structured and efficient learning experience.</li>
+                    <li>Interactive Learning Resources: Our platform offers a diverse range of interactive resources, including tutorials, coding exercises, and project-based assignments, to keep learning engaging and practical.</li>
+                    <li>Community Engagement: We foster a vibrant and supportive community where learners can connect, collaborate, and share insights, creating a conducive environment for growth and development.</li>
+                    <li>Personalized Guidance: Through our partnering system and mentorship opportunities, we provide personalized guidance and support to help learners overcome challenges and achieve their goals.</li>
+                </ul>
+            </div>
+        </section>
+        
+        <section >
+            <div class="container">
+                {% if session.logged_in %}
+                    <h2>Join Techie Mate Today</h2>
+                {% else %}
+                    <a href="{{ url_for('create_user') }}"><h2>Join Techie Mate Today <span class="move-it">&#8594;</span></h2></a>
+                {% endif %}
+                <p>Ready to embark on your software engineering journey with Techie Mate? Sign up now and gain access to a wealth of learning resources, a supportive community, and personalized guidance.</p>
+
+            </div>
+        </section>
+    </div>
 </div>
+<style>
+
+    .all-shit section:nth-child(odd) {
+        background-color: #fff;
+        padding: 50px 0;
+        border-radius: 25px;
+        position: sticky;
+    }
+
+    .all-shit section:nth-child(even) {
+        background-color: #f9f9f9;
+        padding: 50px 0;
+        border-radius: 25px;
+        position: sticky;
+    }
+
+
+    .all-shit section h2 {
+        color: #1e2a37;
+        font-size: 2.5em;
+        margin-bottom: 20px;
+        margin-left: 10px;
+    }
+
+    .all-shit section p {
+        font-size: 1.1em;
+        line-height: 1.6;
+        margin-bottom: 20px;
+        margin-left: 20px;
+    }
+    .all-shit section ul li {
+        font-size: 1.1em;
+        line-height: 1.6;
+        margin-bottom: 10px;
+        margin-left: 30px;
+    }
+
+    .all-shit section ul {
+        list-style-type: disc;
+        margin-left: 20px;
+        margin-bottom: 20px;
+    }
+
+    .all-shit section a {
+        text-decoration: none;
+        
+        margin-bottom: 20px;
+        margin-left: 10px;
+        width: fit-content;
+    display: block;
+    }
+    .move-it {
+        position: relative;
+        right: 15px;
+        transition: all 1s;
+        font-size: 80px;
+        color: #1e2a37;
+    }
+
+    .all-shit section a h2:hover .move-it {
+        right: -50px;
+    }
+</style>
+
+<style>
+    /* Custom CSS for landing page */
+    .hero-section {
+        /* background-image: url('../static/images/pngwing.com\ \(1\).png'); */
+        /* background-size: 2900px; */
+        /* background-position: center; */
+        object-fit: scale-down;
+        height: 100vh; /* Adjust as needed */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        color: #34495e;
+        font-size: 60px;
+    }
+    
+    /* Add styles for other sections as needed */
+</style>
+<style>
+    /* Custom CSS for landing page */
+
+
+
+    /* About Section */
+    .odd-section {
+        background-color: #fff;
+        padding: 50px 0;
+        border-radius: 25px;
+        position: sticky;
+    }
+
+    .odd-section h2 {
+        font-size: 2.5em;
+        margin-bottom: 20px;
+        margin-left: 10px;
+    }
+
+    .odd-section p {
+        font-size: 1.1em;
+        line-height: 1.6;
+        margin-bottom: 20px;
+        margin-left: 20px;
+    }
+
+    /* Roadmaps Section */
+    .even-section {
+        background-color: #f9f9f9;
+        padding: 50px 0;
+        border-radius: 25px;
+    }
+
+    .even-section h2 {
+        font-size: 2.5em;
+        margin-bottom: 20px;
+        margin-left: 10px;
+    }
+
+    .even-section p {
+        font-size: 1.1em;
+        line-height: 1.6;
+        margin-bottom: 20px;
+        margin-left: 20px;
+    }
+
+
+    .even-section ul {
+        list-style-type: disc;
+        margin-left: 20px;
+        margin-bottom: 20px;
+    }
+
+    .even-section ul li {
+        font-size: 1.1em;
+        line-height: 1.6;
+        margin-bottom: 10px;
+        margin-left: 30px;
+    }
+
+    /* Signup Section */
+    .signup-section {
+        background-color: #fff;
+        padding: 50px 0;
+    }
+
+    .signup-section h2 {
+        font-size: 2.5em;
+        margin-bottom: 20px;
+    }
+
+    .signup-section p {
+        font-size: 1.1em;
+        line-height: 1.6;
+        margin-bottom: 20px;
+    }
+
+    .signup-section form {
+        max-width: 500px;
+        margin: 0 auto;
+    }
+
+    .signup-section form input[type="email"],
+    .signup-section form input[type="password"],
+    .signup-section form input[type="email"],
+    .signup-section form input[type="text"] {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 1em;
+    }
+
+    .signup-section form input[type="submit"] {
+        width: 100%;
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        background-color: #34495e;
+        color: #fff;
+        font-size: 1.1em;
+        cursor: pointer;
+    }
+
+    .signup-section form input[type="submit"]:hover {
+        background-color: #2c3e50;
+    }
+</style>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var errorBox = document.getElementById('error-box');
+        var successBox = document.getElementById('success-box');
+        
+        if (errorBox) {
+            setTimeout(function() {
+                fadeOut(errorBox);
+            }, 10000); // Hide after 10 seconds
+        }
+        
+        if (successBox) {
+            setTimeout(function() {
+                fadeOut(successBox);
+            }, 10000); // Hide after 10 seconds
+        }
+    });
+    
+    function fadeOut(element) {
+        var opacity = 1;
+        var timer = setInterval(function() {
+            if (opacity <= 0) {
+                clearInterval(timer);
+                element.style.display = 'none';
+            }
+            element.style.opacity = opacity;
+            opacity -= 0.05;
+        }, 100);
+    }
+    </script>
 {% endblock %}

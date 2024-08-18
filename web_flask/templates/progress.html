@@ -4,6 +4,21 @@
 
 {% block content %}
 <section id="progress-page">
+    {% if error_message %}
+    <div id="error-box" style="background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; border-radius: 5px; padding: 10px; font-size: 16px; margin-bottom: 10px;">
+        {{ error_message }}
+    </div>
+    {% elif success_message %}
+    <div id="success-box" style="background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb; border-radius: 5px; padding: 10px; margin-bottom: 10px;">
+        {{ success_message }}
+        {% if 'Roadmap' in success_message %}
+        <div id="stars-container"></div>
+
+        <script src="script.js"></script>
+        {% endif %}
+    </div>
+    {% endif %}
+    {% if active_chapter %}
     <h1>Progress</h1>
     
     <!-- Course List -->
@@ -54,11 +69,81 @@
         </div>
         
     </div>
+    <!-- other user progress -->
+    <!-- other user progress -->
+    <!-- other user progress -->
+    {% if session.user.partner_id %}
+    <h1>Partner's Progress</h1>
+    
+    <!-- Course List -->
+    <div class="course-list">
+        {% for course in partner_completed_courses %}
+        <div class="pcourse-item completed">
+            {{ course.title }}
+        </div>
+        {% endfor %}
+        
+        <div class="pcourse-item active">
+            {{ partner_active_course.title }}
+        </div>
+        
+        {% for course in partner_upcoming_courses %}
+        <div class="pcourse-item upcoming">
+            {{ course.title }}
+        </div>
+        {% endfor %}
+    </div>
+    
+    <!-- Chapter List -->
+    <div class="chapter-list">
+        
+        <!-- Active Course Chapters -->
+        <div class="active-course-chapters">
+            <h2>{{ partner_active_course.title }} Chapters</h2>
+            
+            <!-- Completed Chapters -->
+            {% for chapter in partner_completed_chapters %}
+            <div class="chapter-item completed">
+                {{ chapter.title }}
+            </div>
+            {% endfor %}
+            
+            <!-- Active Chapter -->
+            <div class="chapter-item active">
+                {{ partner_active_chapter.title }}
+            </div>
+            
+            <!-- Upcoming Chapters -->
+            {% for chapter in partner_upcoming_chapters %}
+            <div class="chapter-item upcoming">
+                {{ chapter.title }}
+            </div>
+            {% endfor %}
+        </div>
+        
+    </div>
+    {% endif %}
+    <!-- other user progress end -->
+    <!-- other user progress end -->
+    <!-- other user progress end -->
     
     <!-- Button to complete active chapter -->
     <form id="complete-chapter-form" method="POST" action="{{ url_for('progress') }}">
         <button type="submit" style="display: none;"></button>
     </form>
+    {% else %}
+    <h1 style="margin-bottom: 200px; font-size: 40px; color: darkgreen;">Congratulations on completing {{ completed_roadmaps[-1] }} Roadmap. Take a break, and come again fresh.</h1>
+    {% endif %}
+    {% if completed_roadmaps %}
+    <div class="section">
+        <h1  style="color: darkgreen; font-size: 30px;"><i class="fas fa-check-circle"></i> Completed Roadmaps</h1>
+        <ul>
+            {% for roadmap in completed_roadmaps %}
+            <li style="font-size: 26px; margin-top: 10px;">{{ roadmap }} <i class="far fa-check-circle"></i></li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
 </section>
 
 <script>
@@ -66,4 +151,93 @@
         document.getElementById('complete-chapter-form').submit();
     }
 </script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var errorBox = document.getElementById('error-box');
+        var successBox = document.getElementById('success-box');
+        
+        if (errorBox) {
+            setTimeout(function() {
+                fadeOut(errorBox);
+            }, 10000); // Hide after 10 seconds
+        }
+        
+        if (successBox) {
+            setTimeout(function() {
+                fadeOut(successBox);
+            }, 10000); // Hide after 10 seconds
+        }
+    });
+    
+    function fadeOut(element) {
+        var opacity = 1;
+        var timer = setInterval(function() {
+            if (opacity <= 0) {
+                clearInterval(timer);
+                element.style.display = 'none';
+            }
+            element.style.opacity = opacity;
+            opacity -= 0.05;
+        }, 100);
+    }
+    </script>
+    <style>
+        body {
+    margin: 0;
+    overflow: hidden; /* Prevent scrollbar */
+}
+
+.star {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-color: transparent;
+    border: none;
+    animation: moveStar 3s linear infinite;
+}
+
+@keyframes moveStar {
+    from {
+        transform: translateY(0) rotate(0deg);
+    }
+    to {
+        transform: translateY(100vh) rotate(720deg);
+    }
+}
+
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+    var starsContainer = document.getElementById('stars-container');
+    var windowHeight = window.innerHeight;
+    var windowWidth = window.innerWidth;
+
+    function createStar() {
+        var star = document.createElement('div');
+        star.classList.add('star');
+        star.style.left = randomPosition(windowWidth) + 'px';
+        star.style.top = randomPosition(windowHeight) + 'px';
+        star.style.animationDuration = (Math.random() * 1 + 2) + 's'; // Random duration between 2s and 3s
+        star.style.borderBottom = '10px solid yellow'; // Customize star color
+        starsContainer.appendChild(star);
+
+        setTimeout(function() {
+            starsContainer.removeChild(star);
+        }, 10000);
+    }
+
+    function randomPosition(max) {
+        return Math.floor(Math.random() * max); // Random position within window width/height
+    }
+
+    function throwStars() {
+        for (var i = 0; i < 500; i++) { // Generate 50 stars
+            createStar();
+        }
+    }
+
+    throwStars();
+});
+
+    </script>
 {% endblock %}
