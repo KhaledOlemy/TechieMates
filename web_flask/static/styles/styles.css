@@ -1,0 +1,1188 @@
+/* styles.css */
+
+/* Reset default browser styles */
+body, h1, h2, h3, p, ul, li, button, input, form {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f2f2f2;
+}
+
+/* Header styles */
+header {
+
+  /* margin-bottom: 300px; */
+  
+}
+
+
+
+.top-nav {
+  background-color: #2c3e50; /* Dark blue */
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  list-style-type: none;
+  z-index: 1;
+  padding: 20px 20px;
+  position: fixed;
+  width: 100%;
+}
+.left-bar {
+  display: flex;
+}
+
+.top-nav li {
+  margin-left: 20px;
+}
+
+.top-nav li:last-child {
+  margin-right: 0%;
+}
+
+.top-nav a {
+  color: #fff;
+  text-decoration: none;
+  padding: 10px 15px;
+  font-size: 22px;
+}
+
+.top-nav a:hover {
+  background-color: #34495e; /* Slightly lighter blue */
+  border-radius: 5px;
+}
+
+/* Dropdown Menu Styles */
+.dropdown {
+  position: relative;
+}
+
+.dropdown-toggle {
+  display: none;
+}
+
+.dropbtn {
+  color: #fff;
+  text-decoration: none;
+  padding: 10px 15px;
+  cursor: pointer;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #34495e; /* Slightly lighter blue */
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  border-radius: 5px;
+  width: 100%;
+  margin-top: 10%;
+}
+
+.dropdown-content a {
+  color: #fff;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+
+}
+
+.dropdown-content a:hover {
+  background-color: #2c3e50; /* Dark blue */
+
+}
+
+.show {
+  display: block;
+}
+/* Main content styles */
+main {
+  padding: 20px;
+}
+
+/* Form styles */
+
+.form-container {
+  max-width: 400px;
+  margin: 0 auto;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-container h1 {
+  margin-bottom: 20px;
+}
+
+.form-container label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.form-container input[type="text"],
+.form-container input[type="email"],
+.form-container input[type="tel"],
+.form-container input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.form-container button {
+  width: 100%;
+  background-color: #2c3e50; /* Dark blue */
+  color: #fff;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.form-container button:hover {
+  background-color: #34495e; /* Slightly lighter blue */
+}
+/* Roadmaps section */
+
+#roadmaps {
+  padding: 20px;
+}
+
+#roadmaps h1{
+  margin-bottom: 20px;
+}
+
+#roadmaps .roadmap-list {
+  list-style-type: none;
+}
+
+#roadmaps .roadmap-item {
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  padding: 20px;
+  position: relative;
+}
+
+#roadmaps .roadmap-info {
+  margin-bottom: 10px;
+}
+
+#roadmaps .roadmap-title {
+  color: #2c3e50; /* Dark blue */
+  margin-bottom: 5px;
+}
+
+#roadmaps .roadmap-description {
+  color: #555;
+  width: 85%;
+  overflow: hidden;
+  white-space: normal;
+}
+
+#roadmaps .roadmap-button {
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+  background-color: #2c3e50; /* Dark blue */
+  color: #fff;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  text-decoration: none;
+}
+
+#roadmaps .roadmap-button:hover {
+  background-color: #34495e; /* Slightly lighter blue */
+}
+
+#roadmaps .roadmap-title a {
+  color: #2c3e50; /* Dark blue */
+  margin-bottom: 5px;
+  text-decoration: none;
+}
+/*end of roadmaps*/
+#single-roadmap {
+  padding: 20px;
+}
+
+.roadmap-info {
+  margin-bottom: 20px;
+}
+
+.roadmap-description-container .roadmap-title {
+  color: #2c3e50; /* Dark blue */
+  margin-bottom: 10px;
+  font-size: 50px;
+}
+
+.roadmap-description-container .roadmap-description {
+  color: #555;
+  font-size: 20px;
+  /* width: 60%; */
+}
+
+.courses {
+  margin-bottom: 30px;
+}
+
+.courses h2 {
+  color: #2c3e50; /* Dark blue */
+  margin-bottom: 10px;
+}
+
+.course-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.course-item {
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin-right: 20px;
+  margin-bottom: 20px;
+  cursor: pointer;
+}
+
+.course-title {
+  color: #2c3e50; /* Dark blue */
+  margin-bottom: auto;
+  max-width: fit-content;
+}
+
+.course-details {
+  display: none;
+}
+
+.course-description {
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.course-link {
+  background-color: #2c3e50; /* Dark blue */
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 8px 15px;
+  text-decoration: none;
+  display: inline-block;
+  margin-top: 10px;
+}
+
+.other-roadmaps {
+  margin-top: 40px;
+}
+
+.other-roadmaps h2 {
+  color: #2c3e50; /* Dark blue */
+  margin-bottom: 10px;
+}
+
+.other-roadmap-list {
+  list-style-type: none;
+  padding: 0;
+  display: flex;
+}
+
+.other-roadmap-item {
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  padding: 10px 20px;
+  margin-right: 10px;
+}
+
+.other-roadmap-item a {
+  color: #2c3e50; /* Dark blue */
+  text-decoration: none;
+}
+
+.other-roadmap-item a:hover {
+  text-decoration: underline;
+}
+
+.course-details-box {
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin-bottom: 20px;
+  display: none; /* Initially hidden */
+  max-width: fit-content;
+}
+
+.course-details-content {
+  display: flex; /* Use flexbox */
+  align-items: center; /* Align items vertically */
+}
+
+.course-details-description {
+  color: #555;
+  margin-bottom: 10px;
+  flex: 1;
+  max-width: auto; /* Adjust as needed */
+  word-wrap: break-word; /* Added */
+}
+
+.course-details-link {
+  background-color: #2c3e50; /* Dark blue */
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 8px 15px;
+  text-decoration: none;
+  margin-left: 10px; /* Added margin to separate from description */
+}
+
+
+/* Add this CSS to position the buttons */
+.roadmap-header {
+  display: flex;
+  align-items: center;
+}
+
+.roadmap-title {
+  flex: 1; /* Allow the title to grow and take up available space */
+  margin-right: 10px; /* Adjust spacing between title and buttons if needed */
+}
+
+
+.button-container {
+  display: flex;
+  align-items: center;
+}
+
+.enroll-button,
+.partners-button {
+  background-color: #2c3e50; /* Dark blue */
+  color: #fff;
+  border: none;
+  border-radius: 10px; /* Increase border radius for rounded corners */
+  padding: 15px 30px; /* Increase padding to make the button bigger */
+  text-decoration: none;
+  margin-left: 20px; /* Adjust spacing between buttons if needed */
+  margin-right: 50px;
+  cursor: pointer;
+  font-size: 18px; /* Increase font size to make the text bigger */
+}
+
+.enroll-button:hover,
+.partners-button:hover {
+  background-color: #34495e; /* Slightly lighter blue */
+}
+
+/**/
+#partners-page h1 {
+  margin-bottom: 20px;
+  font-size: 30px;
+}
+
+.partners-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.partner-item {
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  padding: 10px 20px;
+  margin-bottom: 20px;
+  width: 30%; /* Adjust as needed */
+}
+
+.partner-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.partner-name {
+  text-decoration: none;
+  color: #2c3e50; /* Dark blue */
+  font-size: 24px;
+
+}
+
+.partner-button {
+  background-color: #2c3e50; /* Dark blue */
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 8px 15px;
+  text-decoration: none;
+  font-size: 16px; /* Adjust as needed */
+  cursor: pointer;
+}
+/*progress*/
+
+.courses-column h2,
+.chapters-column h2 {
+  color: #2c3e50; /* Dark blue */
+}
+/*progress*/
+
+
+#progress-page {
+  padding: 20px;
+}
+
+.progress-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.courses-column,
+.chapters-column {
+  width: 48%; /* Adjust as needed */
+}
+
+/* Progress Page CSS */
+#progress-page .course-list {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#progress-page .pcourse-item {
+  flex: 1;
+  background-color: #f2f2f2;
+  border-radius: 8px;
+  padding: 10px;
+  margin: 5px;
+  text-align: center;
+}
+
+#progress-page .chapter-item {
+  background-color: #f2f2f2;
+  border-radius: 8px;
+  padding: 10px;
+  margin: 5px;
+  text-align: center;
+  width: 350px;
+}
+
+#progress-page .completed {
+  background-color: lightgreen;
+}
+
+#progress-page .active {
+  background-color: lightblue;
+}
+
+#progress-page .chapter-list {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  align-items: center;
+}
+
+#progress-page .active-course-chapters .active .complete-button {
+  margin-left: 20px; /* Add some space */
+}
+
+#progress-page .active .complete-button {
+  display: inline-block;
+  margin-top: 5px;
+  margin-right: 10px; /* Add some space */
+  background-color: #0b7f00;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+
+
+#progress-page .active-course-chapters {
+  margin-top: 20px;
+}
+
+#progress-page .complete-button {
+  display: inline-block;
+  margin-top: 5px;
+  background-color: #2c5036; /* Dark blue */
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+#progress-page .complete-button:hover {
+  background-color: #34495e; /* Slightly lighter blue */
+}
+#profile-page {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+#profile-page .profile-header {
+  display: flex;
+  align-items: center;
+  
+}
+
+#profile-page .profile-photo {
+  flex: 0 0 50%; /* Set width to 50% */
+}
+
+#profile-page .profile-photo img {
+  max-width: 80%; /* Limit photo size to container width */
+  border-radius: 50%; /* Make the photo round */
+}
+
+#profile-page .profile-info {
+  flex: 0 0 50%; /* Set width to 50% */
+  padding-left: 20px; /* Add some space between photo and info */
+
+}
+
+#profile-page .profile-info .user-info {
+  display: flex; /* Use flexbox */
+  align-items: center; /* Align items vertically */
+}
+
+#profile-page .profile-info .user-info h1{
+  font-size: 30px;
+}
+
+
+#profile-page .profile-info h1 {
+  font-size: 24px;
+  margin-bottom: 30px;
+
+}
+#profile-page .profile-info a {
+  margin-left: 20px;
+
+}
+
+#profile-page .section {
+  margin-bottom: 20px;
+}
+
+#profile-page .section h2 {
+  font-size: 22px;
+  margin-bottom: 10px;
+}
+
+#profile-page .section p {
+  font-size: 18px;
+  margin-bottom: 5px;
+  margin-left: 10px;
+}
+
+#profile-page .section ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+#profile-page .section li {
+  font-size: 16px;
+  margin-bottom: 5px;
+  margin-left: 10px;
+  color: darkgreen;
+  font-weight: bold;
+}
+
+#profile-page .message-button {
+  margin-bottom: 30px;
+  color: #fff; /* White text */
+  text-decoration: none;
+  font-size: 16px;
+  background-color: #2c3e50; /* Dark blue background */
+  padding: 10px 20px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+  margin-left: 10px; /* Add some space between user name and button */
+}
+
+#profile-page .message-button:hover {
+  background-color: #34495e; /* Slightly lighter blue on hover */
+}
+/* course*/
+
+#course-page {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+#course-page .course-info {
+  margin-bottom: 30px;
+}
+#course-page .course-info h1 {
+  margin-bottom: 15px;
+}
+#course-page .course-info p{
+  margin-left: 15px;
+}
+
+
+#course-page .chapters ul,
+#course-page .vendors ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+#course-page .chapters li,
+#course-page .vendors li {
+  margin-bottom: 10px;
+  margin-left: 15px;
+}
+#course-page .chapters li {
+  font-size: 22px;
+  
+}
+#course-page .vendors .vendor-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 10px;
+}
+
+#course-page .vendors .vendor-info {
+  display: flex;
+  align-items: center;
+}
+
+#course-page .vendors .vendor-info a{
+  font-size: 22px;
+}
+
+#course-page .vendors .vendor-name {
+  flex: 1;
+  font-size: 24px;
+  font-weight: bold;
+
+}
+
+#course-page .vendors .vendor-info .vendor-cost {
+  margin-right: 10px;
+}
+
+#course-page .vendors .button {
+  background-color: #2c3e50;
+  color: #fff;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+#course-page .vendors .button:hover {
+  background-color: #34495e;
+}
+#course-page .vendors h2,
+#course-page .chapters h2 {
+  margin-bottom: 15px;
+}
+
+#course-page .vendors h2 {
+  margin-top: 20px;
+}
+
+/* messages */
+#messages-page {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+#messages-page h1 {
+  font-size: 32px;
+  margin-bottom: 30px;
+}
+
+#messages-page #messages-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#messages-page .message-container {
+  width: 80%;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 10px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#messages-page .message-box {
+  margin-bottom: 5px;
+  max-width: 60%; /* Adjust as needed */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+#messages-page .message-box p {
+  margin-bottom: 5px;
+  padding-bottom: 1px;
+  margin-top: 5px;
+  margin-left: 5px;
+}
+
+#messages-page .message-info {
+  align-items: center;
+}
+#messages-page .message-time {
+  color: #888;
+  text-align: right; /* Align the text to the right */
+  margin-left: 10px;
+}
+#messages-page .message-sender {
+  font-weight: bold;
+  color: #2c3e50; /* Dark blue color */
+  text-decoration: none;
+  padding-top: 5px;
+  font-size: 20px;
+}
+
+
+
+/* Additions to existing CSS */
+
+#messages-page .message-photo {
+  width: 40px; /* Adjust width of photo */
+  height: 40px; /* Adjust height of photo */
+  border-radius: 50%; /* Make the photo round */
+  margin-right: 10px; /* Add space between photo and message box */
+  object-fit: cover; /* Ensure the photo is cropped to fit */
+  margin-top: 5px;
+}
+
+
+/* single messaging */
+
+/* single messaging */
+
+/* single messaging */
+
+#single-messaging-page {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+#single-messaging-page h1 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  font-weight: bold;
+}
+
+#single-messaging-page h1 a {
+  font-size: 24px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  font-weight: bold;
+  margin-left: 10px;
+  text-decoration: none;
+  color: #385470;
+
+}
+
+#single-messaging-page #messaging-container {
+  margin-top: 20px;
+  margin-left: 20px;
+}
+
+#single-messaging-page .message-container {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 10px;
+}
+
+
+#single-messaging-page .message-box {
+  max-width: 70%;
+  padding: 10px;
+  border-radius: 8px;
+  word-wrap: break-word;
+  display: flex;
+}
+#single-messaging-page .sent {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center; /* Align items vertically */
+}
+
+#single-messaging-page .sent .message-box {
+  background-color: #2ecc71; /* Green color for sent messages */
+  color: #fff; /* White text color for sent messages */
+  align-self: flex-start; /* Align message box to the right for sent messages */
+}
+
+#single-messaging-page .sent img {
+  margin-left: 10px; /* Add space between image and message box */
+  order: 2; /* Set image to appear after the message box */
+}
+
+#single-messaging-page .received {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center; /* Align items vertically */
+}
+
+#single-messaging-page .received .message-box {
+  background-color: #3498db; /* Blue color for received messages */
+  color: #fff; /* White text color for received messages */
+  align-self: flex-start; /* Align message box to the right for sent messages */
+}
+
+#single-messaging-page .received img {
+  margin-left: 10px; /* Add space between image and message box */
+}
+
+#single-messaging-page .user-photo {
+  width: 40px; /* Adjust width of photo */
+  height: 40px; /* Adjust height of photo */
+  border-radius: 50%; /* Make the photo round */
+  margin-right: 10px; /* Add space between photo and message */
+}
+
+#single-messaging-page form {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  margin-left: 20px;
+}
+
+#single-messaging-page textarea {
+  width: calc(100% - 100px); /* Adjust width for text area */
+  resize: none; /* Prevent resizing */
+  border: 1px solid #ccc; /* Text area border */
+  border-radius: 5px; /* Text area border radius */
+  padding: 8px;
+  margin-bottom: 10px;
+}
+
+#single-messaging-page button {
+  width: 120px;
+  height: 62px;
+  margin-left: 10px;
+  background-color: #2ecc71; /* Green color for button */
+  color: #fff; /* White text color for button */
+  border: none;
+  border-radius: 5px;
+  padding: 8px;
+  cursor: pointer;
+}
+
+#single-messaging-page button:hover {
+  background-color: #28b463; /* Darker green color on hover */
+}
+
+#single-messaging-page #message-error {
+  margin-top: -10px;
+  margin-left: 20px;
+}
+
+/* Add this CSS to your existing stylesheet */
+/* Add this CSS to your existing stylesheet */
+#messaging-scroll-container {
+  max-height: 700px; /* Set the maximum height for the messaging container */
+  overflow-y: auto; /* Enable vertical scrolling */
+  border: 1px solid #ccc; /* Add border with a color of your choice */
+  border-radius: 8px; /* Add border radius for a rounded appearance */
+}
+
+
+/* community messaging page*/
+#community-messaging-page {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+#community-messaging-page h1 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  font-weight: bold;
+}
+
+#community-messaging-page #messaging-container {
+  margin-top: 20px;
+  margin-left: 20px;
+}
+
+#community-messaging-page .message-container {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 10px;
+}
+
+#community-messaging-page .message-box {
+  max-width: 70%;
+  padding: 10px;
+  border-radius: 8px;
+  word-wrap: break-word;
+  display: flex;
+}
+
+#community-messaging-page .sent {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center; 
+}
+
+#community-messaging-page .sent .message-box {
+  background-color: #2ecc71; 
+  color: #fff; 
+  align-self: flex-start; 
+}
+
+#community-messaging-page .sent img {
+  margin-left: 10px; 
+  order: 2; 
+}
+
+#community-messaging-page .received {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center; /* Align items vertically */
+}
+
+#community-messaging-page .received .message-box {
+  background-color: #3498db; /* Blue color for received messages */
+  color: #fff; /* White text color for received messages */
+  align-self: flex-start; /* Align message box to the right for sent messages */
+}
+
+#community-messaging-page .received img {
+  margin-left: 10px; /* Add space between image and message box */
+}
+
+#community-messaging-page .user-photo {
+  width: 40px; /* Adjust width of photo */
+  height: 40px; /* Adjust height of photo */
+  border-radius: 50%; /* Make the photo round */
+  margin-right: 10px; /* Add space between photo and message */
+}
+
+#community-messaging-page form {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  margin-left: 20px;
+}
+
+#community-messaging-page textarea {
+  width: calc(100% - 100px); /* Adjust width for text area */
+  resize: none; /* Prevent resizing */
+  border: 1px solid #ccc; /* Text area border */
+  border-radius: 5px; /* Text area border radius */
+  padding: 8px;
+  margin-bottom: 10px;
+  margin-left: -20px;
+}
+
+#community-messaging-page button {
+  width: 120px;
+  height: 62px;
+  margin-left: 10px;
+  background-color: #2ecc71; /* Green color for button */
+  color: #fff; /* White text color for button */
+  border: none;
+  border-radius: 5px;
+  padding: 8px;
+  cursor: pointer;
+}
+
+#community-messaging-page button:hover {
+  background-color: #28b463; /* Darker green color on hover */
+}
+
+#community-messaging-page #message-error {
+  margin-top: -10px;
+  margin-left: 20px;
+}
+
+/* Add this CSS to your existing stylesheet */
+#messaging-scroll-container {
+  max-height: 700px; /* Set the maximum height for the messaging container */
+  overflow-y: auto; /* Enable vertical scrolling */
+  border: 1px solid #ccc; /* Add border with a color of your choice */
+  border-radius: 8px; /* Add border radius for a rounded appearance */
+}
+/* comm end*/
+
+
+#community-roadmaps {
+  padding: 20px;
+}
+
+#community-roadmaps h1{
+  margin-bottom: 20px;
+}
+
+#community-roadmaps .roadmap-list {
+  list-style-type: none;
+}
+
+#community-roadmaps .roadmap-item {
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  padding: 20px;
+  position: relative;
+}
+
+#community-roadmaps .roadmap-info {
+  margin-bottom: 10px;
+}
+
+#community-roadmaps .roadmap-title {
+  color: #2c3e50; /* Dark blue */
+  margin-bottom: 5px;
+}
+
+#community-roadmaps .roadmap-description {
+  color: #555;
+  width: 85%;
+  overflow: hidden;
+  white-space: normal;
+}
+
+#community-roadmaps .roadmap-button {
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+  background-color: #2c3e50; /* Dark blue */
+  color: #fff;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  text-decoration: none;
+}
+
+#community-roadmaps .roadmap-button:hover {
+  background-color: #34495e; /* Slightly lighter blue */
+}
+
+#community-roadmaps .roadmap-title a {
+  color: #2c3e50; /* Dark blue */
+  margin-bottom: 5px;
+  text-decoration: none;
+}
+
+
+.notification {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background-color: #34495e;
+  color: white;
+  padding: 15px;
+  border-radius: 5px;
+  z-index: 9999;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  margin-top: 30px;
+  border: solid 2px #031e39;
+}
+
+.notification.show {
+  opacity: 1;
+
+}
+
+
+/* styles.css */
+
+#bind-requests-page {
+  padding: 20px;
+}
+
+#bind-requests-page .split-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+#bind-requests-page .received-requests,
+#bind-requests-page .sent-requests {
+  width: 48%; /* Adjust width as needed */
+}
+
+#bind-requests-page .request-box {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+#bind-requests-page .divider {
+  border-left: 1px solid #ccc; /* Vertical divider line */
+  height: 100%;
+  margin: 0 20px; /* Adjust margin as needed */
+}
+
+#page-signup .image-selection-box {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+
+#page-signup .image-container {
+  width: 25%;
+  padding: 5px;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+#page-signup .image-container input[type="radio"] {
+  display: none;
+}
+
+#page-signup .image-container img {
+  max-width: 40px;
+  max-height: 40px;
+  object-fit: cover;
+  border: 2px solid transparent;
+  cursor: pointer;
+
+}
+
+#page-signup .image-container p {
+  margin-top: 5px;
+}
+
+#page-signup .image-container input[type="radio"]:checked + img {
+  border-color: #007bff;
+}
+
+#contact-us .form-container {
+  padding: 10px;
+}
+
+#contact-us textarea {
+  width: 98.5%;
+}
