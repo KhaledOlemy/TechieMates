@@ -10,7 +10,9 @@ from models.message import Message
 from models.course import Course
 from models.chapter import Chapter
 from models.vendor import Vendor
+from models.bindrequests import BindRequest
 from models.progress import Progress
+from models.contact_us import ContactUs
 
 
 class TechieMateCommand(cmd.Cmd):
@@ -23,7 +25,9 @@ class TechieMateCommand(cmd.Cmd):
                        "Course",
                        "Chapter",
                        "Vendor",
-                       "Progress"]
+                       "Progress",
+                       "ContactUs",
+                       "BindRequest"]
     allowed_methods = ["all", "count", "show", "destroy", "update"]
     objects = storage.all()
 
