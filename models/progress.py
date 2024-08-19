@@ -12,9 +12,9 @@ from sqlalchemy.orm import relationship
 class Progress(BaseModel, Base):
     """Progress Class"""
     __tablename__ = "progresses"
-    users_id = Column(String(60), ForeignKey("users.id"), nullable=False)
+    user_id = Column(String(60), ForeignKey("users.id"), nullable=False)
     roadmap_id = Column(String(60), ForeignKey("roadmaps.id"), nullable=False)
     course_id = Column(String(60), ForeignKey("courses.id"), nullable=False)
     chapter_id = Column(String(60), ForeignKey("chapters.id"), nullable=False)
     completed_roadmap = Column(Integer, nullable=False, default=0)
-    __table_arg__ = (UniqueConstraint('user_id', 'roadmaps_id', name='progress_user_id_roadmap_id_unique'),)
+    __table_args__ = (UniqueConstraint('user_id', 'roadmap_id', name='progress_user_id_roadmap_id_unique'),)

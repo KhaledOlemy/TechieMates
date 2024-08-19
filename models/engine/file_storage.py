@@ -5,6 +5,8 @@ import models
 from models.base_model import BaseModel
 from models.user import User
 from models.message import Message
+from models.contact_us import ContactUs
+from models.bindrequests import BindRequest
 from models.roadmap import Roadmap
 from models.course import Course
 from models.vendor import Vendor
@@ -78,3 +80,14 @@ class FileStorage():
             return len(models.storage.all(cls))
         else:
             return len(models.storage.all())
+
+    def get_user_by_email(self, email):
+        if not email:
+            return None
+        instances = models.storage.all(User)
+        desired_instance = None
+        for _, instance in instances.items():
+            if instance.email == email:
+                desired_instance = instance
+                break
+        return desired_instance

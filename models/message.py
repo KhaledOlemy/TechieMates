@@ -7,8 +7,8 @@ from sqlalchemy.orm import relationship
 
 class Message(BaseModel, Base):
     """Message Class"""
-    __tablename__ = "messags"
-    from_user = Column(String(60), ForeignKey("user.id"), nullable=False)
-    to_user = Column(String(60), ForeignKey("user.id"), nullable=True)
+    __tablename__ = "messages"
+    from_user = Column(String(60), ForeignKey("users.id"), nullable=False)
+    to_user = Column(String(60), ForeignKey("users.id"), nullable=True)
     to_roadmap = Column(String(60), ForeignKey("roadmaps.id"), nullable=True)
     text = Column(String(4096), nullable=False)
