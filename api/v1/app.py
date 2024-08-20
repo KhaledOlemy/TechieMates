@@ -25,6 +25,7 @@
 # from models.message import Message
 # from models.progress import Progress
 # from models.vendor import Vendor
+# from models.contact_us import ContactUs
 # from models import storage
 # from flask import request, render_template, redirect, session, url_for, flash
 # from werkzeug.security import generate_password_hash, check_password_hash
