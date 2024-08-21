@@ -8,6 +8,8 @@ from models.user import User
 from models.message import Message
 from models.progress import Progress
 from models.vendor import Vendor
+from models.contact_us import ContactUs
+from models.bindrequests import BindRequest
 from models import storage
 
 
@@ -19,7 +21,7 @@ def status_function():
 
 @app_views.route("/stats")
 def stats_function():
-    classes = [Roadmap, Course, Chapter, User, Message, Progress, Vendor]
+    classes = [Roadmap, Course, Chapter, User, Message, Progress, Vendor, ContactUs]
     out_dict = {}
     for classname in classes:
         out_dict[classname.__tablename__] = storage.count(classname)
