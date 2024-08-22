@@ -2,3 +2,7 @@ passwords
 *.pyc
 __pycache__
 commands
+db_storage_src.py
+app_src.py
+signup.html.bk
+single-community-messaging.html.bk
