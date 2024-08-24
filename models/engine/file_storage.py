@@ -16,7 +16,7 @@ from models.progress import Progress
 
 class FileStorage():
     """File Storage Class to handle storage"""
-    __file_path = "TechieMateFS.json"
+    __file_path = "TechieMatesFS.json"
     __objects = {}
 
     def all(self, cls=None):

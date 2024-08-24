@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Main Console for Techie Mate"""
+"""Main Console for Techie Mates"""
 import cmd
 from models import storage
 from shlex import split
@@ -15,9 +15,9 @@ from models.progress import Progress
 from models.contact_us import ContactUs
 
 
-class TechieMateCommand(cmd.Cmd):
-    """ Contains the functionality for the TechieMate console"""
-    prompt = "(TechieMate) "
+class TechieMatesCommand(cmd.Cmd):
+    """ Contains the functionality for the TechieMates console"""
+    prompt = "(TechieMates) "
     allowed_classes = ["BaseModel",
                        "Roadmap",
                        "User",
@@ -238,4 +238,4 @@ class TechieMateCommand(cmd.Cmd):
 
 
 if __name__ == '__main__':
-    TechieMateCommand().cmdloop()
+    TechieMatesCommand().cmdloop()
